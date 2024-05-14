@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Usuario {
 
 	protected String nome;
@@ -10,11 +12,15 @@ public abstract class Usuario {
 		return nome;
 	}
 
-	public abstract void adicionarUsuario();
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-	public abstract void excluirUsuario();
+	public abstract void adicionarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios);
 
-	public abstract void editarUsuario();
+	public abstract void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios);
+
+	public abstract void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios);
 
 
 }

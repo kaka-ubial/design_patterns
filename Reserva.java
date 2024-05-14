@@ -1,6 +1,6 @@
 public class Reserva {
 
-	private datetime dataReserva;
+	private String dataReserva;
 
 	private Mesa mesa;
 

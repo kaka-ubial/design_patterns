@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Cliente extends Usuario {
 
 	private String telefone;
@@ -16,18 +18,23 @@ public class Cliente extends Usuario {
 	}
 
 	@Override
-	public void adicionarUsuario() {
+	public void adicionarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) {
+		listaUsuarios.add(usuario);
 
 	}
 
-	@Override
-	public void excluirUsuario() {
-
+	public void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
+		listaUsuarios.remove(usuario);
 	}
 
-	@Override
-	public void editarUsuario() {
-
+	public void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
+		int index = listaUsuarios.indexOf(usuario);
+		if (index != -1){
+			usuario.setNome(nome);
+			listaUsuarios.set(index, usuario);
+		} else {
+			System.out.println("Usuário não encontrado.");
+		}
 	}
 }
 
