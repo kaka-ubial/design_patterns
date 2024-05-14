@@ -1,5 +1,5 @@
 abstract public class Item {
-
+	//atributos
 	protected String nomeItem;
 
 	protected double precoItem;

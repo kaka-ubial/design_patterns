@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class Comanda {
-
+	//atributos
 	private int idComanda;
 
 	private ArrayList<Item> itens;
