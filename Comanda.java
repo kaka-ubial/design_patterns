@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 public class Comanda {
 
 	private int idComanda;
 
-	private Arraylist<Item> itens;
+	private ArrayList<Item> itens;
 
 	private double precoTotal;
 
