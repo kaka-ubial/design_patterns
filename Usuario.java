@@ -6,6 +6,10 @@ public abstract class Usuario {
 		this.nome = nome;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
 	public abstract void adicionarUsuario();
 
 	public abstract void excluirUsuario();

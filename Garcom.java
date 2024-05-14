@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
 public class Garcom extends Usuario{
+
 	//atributos
 	private String turno;
 
@@ -29,11 +32,12 @@ public class Garcom extends Usuario{
 
 
 	//métodos
-	public void adicionarUsuario(){
-
+	public void adicionarUsuario(Usuario usuario, ArrayList<Usuario> garcons) {
+		garcons.add(usuario);
 	}
 
-	public void excluirUsuario(){
+
+	public void excluirUsuario(Usuario usuario, ArrayList<Usuario>){
 
 	}
 
