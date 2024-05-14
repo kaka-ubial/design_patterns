@@ -33,24 +33,27 @@ public class Mesa {
 		this.numLugares = numLugares;
 	}
 
-	public boolean isReservado() {
-		return reservado;
-	}
-
 	public void setReservado(boolean reservado) {
 		this.reservado = reservado;
 	}
 
 	//métodos
+	public boolean isReservado() {
+		return reservado;
+	}
+
+	//método para adicionar mesa na lista de mesas
 	public void adicionarMesa(Mesa mesa, ArrayList<Mesa> listaMesas) {
 		listaMesas.add(mesa);
 
 	}
 
+	//método para excluir uma mesa da lista
 	public void excluirMesa(Mesa mesa, ArrayList<Mesa> listaMesas) {
 		listaMesas.remove(mesa);
 	}
 
+	//método para editar uma mesa da lista
 	public void editarMesa(Mesa mesa, ArrayList<Mesa> listaMesas) {
 		int index = listaMesas.indexOf(mesa);
 		if (index != -1){
@@ -65,8 +68,9 @@ public class Mesa {
 
 	}
 
-	public void reservarMesa() {
-		int oi = 9;
+	//método para mudar o estado de reserva da mesa (reservá-la)
+	public void reservarMesa(Mesa mesa) {
+		reservado = true;
 
 	}
 

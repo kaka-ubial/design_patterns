@@ -33,15 +33,18 @@ public class Garcom extends Usuario{
 	}
 
 	//métodos
+	//método para adicionar um novo usuário dentro da lista de usuários
 	public void adicionarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) {
 		listaUsuarios.add(usuario);
 
 	}
 
+	//método para excluir usuários da lista
 	public void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
 		listaUsuarios.remove(usuario);
 	}
 
+	//método para editar um usuário da lista
 	public void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
 		int index = listaUsuarios.indexOf(usuario);
 		if (index != -1){
