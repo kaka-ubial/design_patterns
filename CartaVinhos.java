@@ -1,26 +1,52 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public class CartaVinhos extends Menu {
     public CartaVinhos(ArrayList<Item> itens, String nome) {
         super(itens, nome);
     }
 
     @Override
-    public void criarMenu() {
-
+    public ArrayList<Item> getItens() {
+        return super.getItens();
     }
 
     @Override
-    public void editarMenu() {
-
+    public void setItens(ArrayList<Item> itens) {
+        super.setItens(itens);
     }
 
     @Override
-    public void deletarMenu() {
-
+    public String getNome() {
+        return super.getNome();
     }
 
     @Override
-    public void exibirMenu() {
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
 
+    @Override
+    public Menu criarMenu(ArrayList<Item> itens) {
+        return new CartaVinhos(itens, "Carta de Vinhos");
+    }
+
+
+    @Override
+    public Menu editarMenu(ArrayList<Item> itens) {
+        return this;
+}
+
+    @Override
+    public Menu deletarMenu(ArrayList<Item> itens) {
+        itens.clear();
+        return this;
+    }
+
+    @Override
+    public void exibirMenu(ArrayList<Item> itens) {
+        for(Item item : itens){
+            System.out.println(item);
+        }
     }
 }

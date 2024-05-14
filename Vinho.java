@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Vinho extends Item {
 
 	private int idadeVinho;
@@ -70,26 +72,26 @@ public class Vinho extends Item {
 	}
 
 	@Override
-	public void adicionarItem() {
+	public void adicionarItem(Item item, ArrayList<Item> itens) {
+		itens.add(item);
+	}
+
+	@Override
+	public void editarItem(Item item, ArrayList<Item> itens) {
 
 	}
 
 	@Override
-	public void editarItem() {
+	public void excluirItem(Item item, ArrayList<Item> itens) {
 
 	}
 
 	@Override
-	public void excluirItem() {
+	public void listarItens(ArrayList<Item> itens) {
 
 	}
 
-	@Override
-	public void listarItens() {
-
-	}
-
-	public void exibirInfo() {
+	public void exibirInfo(ArrayList<Item> itens) {
 
 	}
 
