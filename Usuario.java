@@ -2,16 +2,15 @@ public abstract class Usuario {
 
 	protected String nome;
 
-	public void adicionarUsuario() {
-
+	public Usuario(String nome) {
+		this.nome = nome;
 	}
 
-	public void excluirUsuario() {
+	public abstract void adicionarUsuario();
 
-	}
+	public abstract void excluirUsuario();
 
-	public void editarUsuario() {
+	public abstract void editarUsuario();
 
-	}
 
 }
