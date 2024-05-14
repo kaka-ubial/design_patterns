@@ -1,4 +1,4 @@
-public class Item {
+abstract public class Item {
 
 	protected String nomeItem;
 
@@ -6,20 +6,42 @@ public class Item {
 
 	protected String descricaoItem;
 
-	public void adicionarItem() {
-
+	public Item(String nomeItem, double precoItem, String descricaoItem) {
+		this.nomeItem = nomeItem;
+		this.precoItem = precoItem;
+		this.descricaoItem = descricaoItem;
 	}
 
-	public void editarItem() {
-
+	public String getNomeItem() {
+		return nomeItem;
 	}
 
-	public void excluirItem() {
-
+	public void setNomeItem(String nomeItem) {
+		this.nomeItem = nomeItem;
 	}
 
-	public void listarItens() {
-
+	public double getPrecoItem() {
+		return precoItem;
 	}
+
+	public void setPrecoItem(double precoItem) {
+		this.precoItem = precoItem;
+	}
+
+	public String getDescricaoItem() {
+		return descricaoItem;
+	}
+
+	public void setDescricaoItem(String descricaoItem) {
+		this.descricaoItem = descricaoItem;
+	}
+
+	public abstract void adicionarItem();
+
+	public abstract void editarItem();
+
+	public abstract void excluirItem();
+
+	public abstract void listarItens();
 
 }
