@@ -4,6 +4,7 @@ public class Cliente extends Usuario {
 
 	private String telefone;
 
+	private ArrayList<Usuario> listaUsuarios;
 	public Cliente(String nome, String telefone) {
 		super(nome);
 		this.telefone = telefone;
@@ -30,12 +31,19 @@ public class Cliente extends Usuario {
 	public void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
 		int index = listaUsuarios.indexOf(usuario);
 		if (index != -1){
-			usuario.setNome(nome);
-			listaUsuarios.set(index, usuario);
+			if (usuario instanceof Cliente) {
+				Cliente cliente = (Cliente) usuario;
+				cliente.setNome(nome);
+				cliente.setTelefone(telefone);
+				listaUsuarios.set(index, cliente);
+			} else {
+				System.out.println("Apenas clientes podem ser editados.");
+			}
 		} else {
 			System.out.println("Usuário não encontrado.");
 		}
 	}
+
 }
 
 

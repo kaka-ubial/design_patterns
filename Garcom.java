@@ -6,6 +6,9 @@ public class Garcom extends Usuario{
 	private String turno;
 
 	private int idGarcom;
+
+	private ArrayList<Usuario> listaUsuarios;
+
 	//construtor
 	public Garcom(String nome, String turno, int idGarcom) {
 		super(nome);
@@ -29,8 +32,6 @@ public class Garcom extends Usuario{
 		this.idGarcom = idGarcom;
 	}
 
-
-
 	//métodos
 	public void adicionarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) {
 		listaUsuarios.add(usuario);
@@ -44,8 +45,15 @@ public class Garcom extends Usuario{
 	public void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
 		int index = listaUsuarios.indexOf(usuario);
 		if (index != -1){
-			usuario.setNome(nome);
-			listaUsuarios.set(index, usuario);
+			if (usuario instanceof Garcom) {
+				Garcom garcom = (Garcom) usuario;
+				garcom.setNome(nome);
+				garcom.setTurno(turno);
+				garcom.setIdGarcom(idGarcom);
+				listaUsuarios.set(index, garcom);
+			} else {
+				System.out.println("Apenas garçons podem ser editados.");
+			}
 		} else {
 			System.out.println("Usuário não encontrado.");
 		}

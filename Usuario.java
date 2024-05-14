@@ -1,13 +1,15 @@
 import java.util.ArrayList;
 
 public abstract class Usuario {
-
+ 	//atributos
 	protected String nome;
 
+	//construtor
 	public Usuario(String nome) {
 		this.nome = nome;
 	}
 
+	//getters e setters
 	public String getNome() {
 		return nome;
 	}
@@ -16,6 +18,7 @@ public abstract class Usuario {
 		this.nome = nome;
 	}
 
+	//métodos
 	public abstract void adicionarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios);
 
 	public abstract void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios);
