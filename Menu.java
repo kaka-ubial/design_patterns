@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public abstract class Menu {
-
+	//atributos
 	protected ArrayList<Item> itens;
 
 	protected String nome;
