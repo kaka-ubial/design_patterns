@@ -28,7 +28,7 @@
 5. Abra um Pull Request.
 
 ## Autores 🎓
-- Este projeto foi desenvolvido por:
+Este projeto foi desenvolvido por:
 - Bárbara Marinho Tippa
 - Murilo Carvalho Pereira
 - Karen Ubial Pereira
