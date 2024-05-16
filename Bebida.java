@@ -4,7 +4,7 @@ public class Bebida extends Item {
 
 	private boolean alcoolica;
 
-	private ArrayList<Bebida> catalogoBebidas;
+	private ArrayList<Bebida> catalogoBebidas = new ArrayList<>();
 
 
 	public Bebida(String nomeItem, double precoItem, String descricaoItem, boolean alcoolica) {

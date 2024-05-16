@@ -14,7 +14,7 @@ public class Vinho extends Item {
 
 	private String teorAlcoolico;
 
-	private ArrayList<Vinho> catalogoVinhos;
+	private ArrayList<Vinho> catalogoVinhos = new ArrayList<>();
 
 	public Vinho(String nomeItem, double precoItem, String descricaoItem, int idadeVinho, String nacionalidade, String tipo, String uva, String corpo, String teorAlcoolico) {
 		super(nomeItem, precoItem, descricaoItem);
@@ -98,7 +98,7 @@ public class Vinho extends Item {
 					}
 			}
 	}
-	
+
 	@Override
 	public void listarItens(ArrayList<Item> itens) {
 		for (Item item : itens) {

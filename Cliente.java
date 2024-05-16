@@ -4,7 +4,7 @@ public class Cliente extends Usuario {
 	//atributos
 	private String telefone;
 
-	private ArrayList<Usuario> listaUsuarios;
+	private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
 	//construtor que ja adiciona o usuário na lista de usuarios
 	public Cliente(String nome, String telefone) {

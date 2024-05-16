@@ -7,13 +7,14 @@ public class Garcom extends Usuario{
 
 	private int idGarcom;
 
-	private ArrayList<Usuario> listaUsuarios;
+	private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
 	//construtor que ja adiciona o usuário na lista de usuarios
 	public Garcom(String nome, String turno, int idGarcom) {
 		super(nome);
 		this.turno = turno;
 		this.idGarcom = idGarcom;
+
 		listaUsuarios.add(this);
 	}
 	//getters e setters
@@ -27,6 +28,10 @@ public class Garcom extends Usuario{
 
 	public int getIdGarcom() {
 		return idGarcom;
+	}
+
+	public ArrayList<Usuario> getlistaUsuarios() {
+		return listaUsuarios;
 	}
 
 	public void setIdGarcom(int idGarcom) {

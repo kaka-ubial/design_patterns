@@ -8,7 +8,7 @@ public class Prato extends Item {
 
 	private boolean lactose;
 
-	private ArrayList<Prato> catalogoPrato;
+	private ArrayList<Prato> catalogoPrato = new ArrayList<>();
 
 
 	public Prato(String nomeItem, double precoItem, String descricaoItem, boolean vegano, boolean gluten, boolean lactose) {
