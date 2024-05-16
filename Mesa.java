@@ -75,6 +75,7 @@ public class Mesa {
 		reservado = true;
 
 	}
+	//método para mudar o estado de reserva da mesa (cancelar reserva)
 	public void cancelarReservaMesa(Mesa mesa){
 		reservado = false;
 	}
