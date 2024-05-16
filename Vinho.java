@@ -14,6 +14,8 @@ public class Vinho extends Item {
 
 	private String teorAlcoolico;
 
+	private ArrayList<Vinho> catalogoVinhos;
+
 	public Vinho(String nomeItem, double precoItem, String descricaoItem, int idadeVinho, String nacionalidade, String tipo, String uva, String corpo, String teorAlcoolico) {
 		super(nomeItem, precoItem, descricaoItem);
 		this.idadeVinho = idadeVinho;
@@ -22,6 +24,7 @@ public class Vinho extends Item {
 		this.uva = uva;
 		this.corpo = corpo;
 		this.teorAlcoolico = teorAlcoolico;
+		catalogoVinhos.add(this);
 	}
 
 	public int getIdadeVinho() {
@@ -71,28 +74,61 @@ public class Vinho extends Item {
 		this.teorAlcoolico = teorAlcoolico;
 	}
 
-	@Override
-	public void adicionarItem(Item item, ArrayList<Item> itens) {
-		itens.add(item);
+	public void editarItem(Item item) {
+		if (item instanceof Vinho) {
+				Vinho vinho = (Vinho) item;
+				for (int i = 0; i < catalogoVinhos.size(); i++) {
+						if (catalogoVinhos.get(i).getNomeItem().equals(vinho.getNomeItem())) {
+								catalogoVinhos.set(i, vinho);
+								break;
+						}
+				}
+		}
 	}
 
 	@Override
-	public void editarItem(Item item, ArrayList<Item> itens) {
-
+	public void excluirItem(Item item) {
+			if (item instanceof Vinho) {
+					Vinho vinho = (Vinho) item;
+					for (int i = 0; i < catalogoVinhos.size(); i++) {
+							if (catalogoVinhos.get(i).getNomeItem().equals(vinho.getNomeItem())) {
+									catalogoVinhos.remove(i);
+									break;
+							}
+					}
+			}
 	}
-
-	@Override
-	public void excluirItem(Item item, ArrayList<Item> itens) {
-
-	}
-
+	
 	@Override
 	public void listarItens(ArrayList<Item> itens) {
-
+		for (Item item : itens) {
+			if (item instanceof Vinho) {
+					Vinho vinho = (Vinho) item;
+					System.out.println("Nome: " + vinho.getNomeItem());
+					System.out.println("Preço: " + vinho.getPrecoItem());
+					System.out.println("Descrição: " + vinho.getDescricaoItem());
+					System.out.println("Idade do Vinho: " + vinho.getIdadeVinho());
+					System.out.println("Nacionalidade: " + vinho.getNacionalidade());
+					System.out.println("Tipo: " + vinho.getTipo());
+					System.out.println("Uva: " + vinho.getUva());
+					System.out.println("Corpo: " + vinho.getCorpo());
+					System.out.println("Teor Alcoólico: " + vinho.getTeorAlcoolico());
+					System.out.println();
+			}
+	}
 	}
 
 	public void exibirInfo(ArrayList<Item> itens) {
-
+		System.out.println("Nome: " + this.getNomeItem());
+		System.out.println("Preço: " + this.getPrecoItem());
+		System.out.println("Descrição: " + this.getDescricaoItem());
+		System.out.println("Idade do Vinho: " + this.getIdadeVinho());
+		System.out.println("Nacionalidade: " + this.getNacionalidade());
+		System.out.println("Tipo: " + this.getTipo());
+		System.out.println("Uva: " + this.getUva());
+		System.out.println("Corpo: " + this.getCorpo());
+		System.out.println("Teor Alcoólico: " + this.getTeorAlcoolico());
+		System.out.println();
 	}
 
 }
