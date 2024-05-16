@@ -38,11 +38,9 @@ abstract public class Item {
 		this.descricaoItem = descricaoItem;
 	}
 
-	public abstract void adicionarItem(Item item, ArrayList<Item> itens);
+	public abstract void editarItem(Item item);
 
-	public abstract void editarItem(Item item, ArrayList<Item> itens);
-
-	public abstract void excluirItem(Item item, ArrayList<Item> itens);
+	public abstract void excluirItem(Item item);
 
 	public abstract void listarItens(ArrayList<Item> itens);
 
