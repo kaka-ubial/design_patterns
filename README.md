@@ -10,7 +10,7 @@
 - Facilidade de Uso: Interface intuitiva e amigável para garantir uma experiência de usuário agradável para clientes e funcionários do restaurante.
 
 ## Requisitos do Sistema 💻
--Java 8 ou superior instalado no ambiente de execução.
+- Java 8 ou superior instalado no ambiente de execução.
 
 ## Como Usar 🤔
 1. Faça o download do código-fonte ou clone o repositório.
