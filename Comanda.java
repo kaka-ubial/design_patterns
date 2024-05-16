@@ -1,26 +1,56 @@
 import java.util.ArrayList;
+
 public class Comanda {
+	//atributos
+	private static int proximoId = 1;
 
 	private int idComanda;
-
-	private ArrayList<Item> itens;
-
+	private ArrayList<Item> itensComanda;
 	private double precoTotal;
 
-	public void criarComanda() {
+	private boolean pago;
 
+	//construtor
+	public Comanda() {
+		this.idComanda = proximoId++;
+		this.itensComanda = new ArrayList<>();
+		this.precoTotal = 0;
+		this.pago = false;
 	}
 
-	public void editarComanda() {
-
+	//métodos
+	//método para adicionar item à comanda
+	public void adicionarItem(Item item) {
+		itensComanda.add(item);
+		precoTotal += item.getPrecoItem();
+	}
+	//método para remover item da comanda
+	public void removerItem(Item item) {
+		itensComanda.remove(item);
+		precoTotal -= item.getPrecoItem();
 	}
 
-	public void excluirComanda() {
-
+	//método para calcular preço final da comanda
+	public double calcularPrecoTotal() {
+		double total = 0;
+		for (Item item : itensComanda) {
+			total += item.getPrecoItem();
+		}
+		return total;
 	}
 
-	public void exibirComandas() {
-
+	//método para exibir detalhes da comanda
+	public void exibirComanda() {
+		System.out.println("Comanda #" + idComanda);
+		for (Item item : itensComanda) {
+			System.out.println(item.getNomeItem() + ": R$" + item.getPrecoItem());
+		}
+		System.out.println("Total: R$" + precoTotal);
 	}
 
+	//método para mudar o estado da comanda para paga
+	public void pagarComanda(){
+		pago = true;
+		System.out.println("A comanda " + idComanda + "foi paga");
+	}
 }
