@@ -67,14 +67,12 @@ public class Restaurante {
 		System.out.println("Telefone: " + telefone);
 	}
 
-	public void editarInfo(String nome, String culinaria, String descricao, String endereco, String horarioFuncionamento, String telefone)) {
+	public void editarInfo(String nome, String culinaria, String descricao, String endereco, String horarioFuncionamento, String telefone) {
 		setNome(nome);
 		setCulinaria(culinaria);
 		setDescricao(descricao);
 		setEndereco(endereco);
 		setHorarioFuncionamento(horarioFuncionamento);
-		setTelefone(telefone); }
-
+		setTelefone(telefone);
 	}
-
 }
