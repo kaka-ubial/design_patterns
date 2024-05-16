@@ -7,13 +7,14 @@ public class Mesa {
 	private int numLugares;
 
 	private boolean reservado;
-	private ArrayList<Mesa> listaMesas;
+	private ArrayList<Mesa> listaMesas = new ArrayList<>();
 
-	//construtor
-	public Mesa(int numero, int numLugares, boolean reservado) {
+	//construtor que ja adiciona o usuário na lista de usuarios
+	public Mesa(int numero, int numLugares, boolean reservado, Mesa mesa) {
 		this.numero = numero;
 		this.numLugares = numLugares;
 		this.reservado = reservado;
+		listaMesas.add(this);
 	}
 
 	//getters e setters
@@ -44,12 +45,6 @@ public class Mesa {
 		return reservado;
 	}
 
-	//método para adicionar mesa na lista de mesas
-	public void adicionarMesa(Mesa mesa, ArrayList<Mesa> listaMesas) {
-		listaMesas.add(mesa);
-
-	}
-
 	//método para excluir uma mesa da lista
 	public void excluirMesa(Mesa mesa, ArrayList<Mesa> listaMesas) {
 		listaMesas.remove(mesa);
@@ -75,6 +70,7 @@ public class Mesa {
 		reservado = true;
 
 	}
+	//método para mudar o estado de reserva da mesa (cancelar reserva)
 	public void cancelarReservaMesa(Mesa mesa){
 		reservado = false;
 	}

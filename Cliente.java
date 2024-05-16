@@ -4,12 +4,13 @@ public class Cliente extends Usuario {
 	//atributos
 	private String telefone;
 
-	private ArrayList<Usuario> listaUsuarios;
+	private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-	//construtor
+	//construtor que ja adiciona o usuário na lista de usuarios
 	public Cliente(String nome, String telefone) {
 		super(nome);
 		this.telefone = telefone;
+		listaUsuarios.add(this);
 	}
 
 	//getters e setters
@@ -22,12 +23,6 @@ public class Cliente extends Usuario {
 	}
 
 	//métodos
-	//método para adicionar um novo usuário dentro da lista de usuários
-	@Override
-	public void adicionarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) {
-		listaUsuarios.add(usuario);
-
-	}
 
 	//método para excluir usuários da lista
 	public void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){

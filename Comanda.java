@@ -5,17 +5,64 @@ public class Comanda {
 	private static int proximoId = 1;
 
 	private int idComanda;
-	private ArrayList<Item> itensComanda;
+	private ArrayList<Item> itensComanda = new ArrayList<>();
+
+	private  ArrayList<Comanda> listaComandas = new ArrayList<>();
 	private double precoTotal;
 
 	private boolean pago;
 
+	private Mesa mesa;
+
 	//construtor
-	public Comanda() {
+	public Comanda(Mesa mesa) {
 		this.idComanda = proximoId++;
 		this.itensComanda = new ArrayList<>();
 		this.precoTotal = 0;
 		this.pago = false;
+		this.mesa = mesa;
+		listaComandas.add(this);
+	}
+
+	//getters e setters
+	public int getIdComanda() {
+		return idComanda;
+	}
+
+	public void setIdComanda(int idComanda) {
+		this.idComanda = idComanda;
+	}
+
+	public ArrayList<Item> getItensComanda() {
+		return itensComanda;
+	}
+
+	public void setItensComanda(ArrayList<Item> itensComanda) {
+		this.itensComanda = itensComanda;
+	}
+
+	public ArrayList<Comanda> getListaComandas() {
+		return listaComandas;
+	}
+
+	public void setListaComandas(ArrayList<Comanda> listaComandas) {
+		this.listaComandas = listaComandas;
+	}
+
+	public double getPrecoTotal() {
+		return precoTotal;
+	}
+
+	public void setPrecoTotal(double precoTotal) {
+		this.precoTotal = precoTotal;
+	}
+
+	public boolean isPago() {
+		return pago;
+	}
+
+	public void setPago(boolean pago) {
+		this.pago = pago;
 	}
 
 	//métodos
@@ -40,12 +87,18 @@ public class Comanda {
 	}
 
 	//método para exibir detalhes da comanda
-	public void exibirComanda() {
+	public void exibirComandaEspecifica() {
 		System.out.println("Comanda #" + idComanda);
+		System.out.println("Mesa:" + mesa.getNumero());
 		for (Item item : itensComanda) {
 			System.out.println(item.getNomeItem() + ": R$" + item.getPrecoItem());
 		}
 		System.out.println("Total: R$" + precoTotal);
+	}
+
+	//método para exibir a lista de comandas:
+	public ArrayList exibirListaComandas(ArrayList listaComandas) {
+		return listaComandas;
 	}
 
 	//método para mudar o estado da comanda para paga

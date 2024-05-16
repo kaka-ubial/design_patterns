@@ -8,11 +8,15 @@ public class Prato extends Item {
 
 	private boolean lactose;
 
+	private ArrayList<Prato> catalogoPrato = new ArrayList<>();
+
+
 	public Prato(String nomeItem, double precoItem, String descricaoItem, boolean vegano, boolean gluten, boolean lactose) {
 		super(nomeItem, precoItem, descricaoItem);
 		this.vegano = vegano;
 		this.gluten = gluten;
 		this.lactose = lactose;
+		catalogoPrato.add(this);
 	}
 
 	public boolean isVegano() {
@@ -39,23 +43,35 @@ public class Prato extends Item {
 		this.lactose = lactose;
 	}
 
-	@Override
-	public void adicionarItem(Item item, ArrayList<Item> itens) {
-		itens.add(item);
+	public void editarItem(Item item) {
+		if (item instanceof Prato) {
+				Prato prato = (Prato) item;
+				for (int i = 0; i < catalogoPrato.size(); i++) {
+						if (catalogoPrato.get(i).getNomeItem().equals(prato.getNomeItem())) {
+								catalogoPrato.set(i, prato);
+								break;
+						}
+				}
+		}
 	}
 
-	@Override
-	public void editarItem(Item item, ArrayList<Item> itens) {
-
-	}
-
-	@Override
-	public void excluirItem(Item item, ArrayList<Item> itens) {
-
+@Override
+	public void excluirItem(Item item) {
+			if (item instanceof Prato) {
+					Prato prato = (Prato) item;
+					for (int i = 0; i < catalogoPrato.size(); i++) {
+							if (catalogoPrato.get(i).getNomeItem().equals(prato.getNomeItem())) {
+									catalogoPrato.remove(i);
+									break;
+							}
+					}
+			}
 	}
 
 	@Override
 	public void listarItens(ArrayList<Item> itens) {
-
+		for(Item item : itens) {
+			System.out.println(item);
+		}
 	}
 }
