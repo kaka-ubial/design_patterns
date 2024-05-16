@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Bebida extends Item {
 
 	private boolean alcoolica;
@@ -16,22 +18,22 @@ public class Bebida extends Item {
 	}
 
 	@Override
-	public void adicionarItem() {
+	public void adicionarItem(Item item, ArrayList<Item> itens) {
+		itens.add(item);
+	}
+
+	@Override
+	public void editarItem(Item item, ArrayList<Item> itens) {
 
 	}
 
 	@Override
-	public void editarItem() {
+	public void excluirItem(Item item, ArrayList<Item> itens) {
 
 	}
 
 	@Override
-	public void excluirItem() {
-
-	}
-
-	@Override
-	public void listarItens() {
+	public void listarItens(ArrayList<Item> itens) {
 
 	}
 }
