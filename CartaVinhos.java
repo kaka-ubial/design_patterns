@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CartaVinhos extends Menu {
     public CartaVinhos(ArrayList<Item> itens, String nome) {
