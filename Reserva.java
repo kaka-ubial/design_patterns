@@ -1,17 +1,24 @@
-public class Reserva {
+import java.util.ArrayList;
 
+public class Reserva {
+	//atributos
 	private String dataReserva;
 
 	private Mesa mesa;
 
 	private Cliente cliente;
 
+	private ArrayList<Reserva> listaReservas = new ArrayList<>();
+
+	//construtor que adiciona a reserva na lista logo depois do objeto ser instanciado
 	public Reserva(String dataReserva, Mesa mesa, Cliente cliente) {
 		this.dataReserva = dataReserva;
 		this.mesa = mesa;
 		this.cliente = cliente;
+		listaReservas.add(this);
 	}
 
+	//getters e setters
 	public String getDataReserva() {
 		return dataReserva;
 	}
@@ -36,20 +43,30 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 
-	public void criarReserva() {
-
+	//métodos
+	//método para cancelar uma reserva, remove ela da lista e muda o estado da mesa para reservada =  false
+	public void cancelarReserva(Reserva reserva) {
+		listaReservas.remove(reserva);
+		Mesa mesa = reserva.getMesa();
+		mesa.cancelarReservaMesa(mesa);
 	}
 
-	public void cancelarReserva() {
-
+	//método para editar uma reserva
+	public void editarReserva(String novaData, Mesa novaMesa, Cliente novoCliente) {
+		this.dataReserva = novaData;
+		this.mesa = novaMesa;
+		this.cliente = novoCliente;
 	}
 
-	public void editarReserva() {
-
+	//método para visualizar todas as reservas na lista de reservas
+	public void visualizarReservas(ArrayList<Reserva> listaReservas) {
+		for (Reserva reserva : listaReservas) {
+			System.out.println("Data da Reserva: " + reserva.getDataReserva());
+			System.out.println("Mesa: " + reserva.getMesa());
+			System.out.println("Cliente: " + reserva.getCliente());
+			System.out.println("----------------------------------");
+		}
 	}
 
-	public void visualizarReservas() {
-
-	}
 
 }

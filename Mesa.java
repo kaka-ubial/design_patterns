@@ -38,6 +38,8 @@ public class Mesa {
 	}
 
 	//métodos
+
+	//método para verificar o estado da mesa
 	public boolean isReservado() {
 		return reservado;
 	}
@@ -72,6 +74,9 @@ public class Mesa {
 	public void reservarMesa(Mesa mesa) {
 		reservado = true;
 
+	}
+	public void cancelarReservaMesa(Mesa mesa){
+		reservado = false;
 	}
 
 }
