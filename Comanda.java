@@ -5,19 +5,22 @@ public class Comanda {
 	private static int proximoId = 1;
 
 	private int idComanda;
-	private ArrayList<Item> itensComanda;
+	private ArrayList<Item> itensComanda = new ArrayList<>();
 
-	private  ArrayList<Comanda> listaComandas;
+	private  ArrayList<Comanda> listaComandas = new ArrayList<>();
 	private double precoTotal;
 
 	private boolean pago;
 
+	private Mesa mesa;
+
 	//construtor
-	public Comanda() {
+	public Comanda(Mesa mesa) {
 		this.idComanda = proximoId++;
 		this.itensComanda = new ArrayList<>();
 		this.precoTotal = 0;
 		this.pago = false;
+		this.mesa = mesa;
 		listaComandas.add(this);
 	}
 
@@ -86,6 +89,7 @@ public class Comanda {
 	//método para exibir detalhes da comanda
 	public void exibirComandaEspecifica() {
 		System.out.println("Comanda #" + idComanda);
+		System.out.println("Mesa:" + mesa.getNumero());
 		for (Item item : itensComanda) {
 			System.out.println(item.getNomeItem() + ": R$" + item.getPrecoItem());
 		}
