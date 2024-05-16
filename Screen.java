@@ -17,5 +17,6 @@ public class Screen {
         JLabel imageLabel = new JLabel(imageIcon);// Cria um JLabel para exibir a imagem
         jFrame.add(imageLabel);// Adiciona o JLabel ao JFrame
         jFrame.setVisible(true); /* Torna a tela visível */
+        /* teste  */
     }
 }
