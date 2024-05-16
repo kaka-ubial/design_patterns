@@ -52,10 +52,10 @@ public class Reserva {
 	}
 
 	//método para editar uma reserva
-	public void editarReserva(String novaData, Mesa novaMesa, Cliente novoCliente) {
-		this.dataReserva = novaData;
-		this.mesa = novaMesa;
-		this.cliente = novoCliente;
+	public void editarReserva(Reserva reserva) {
+		reserva.setDataReserva(dataReserva);
+		reserva.setCliente(cliente);
+		reserva.setMesa(mesa);
 	}
 
 	//método para visualizar todas as reservas na lista de reservas
