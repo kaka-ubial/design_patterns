@@ -46,16 +46,18 @@ public class Prato extends Item {
 
 	@Override
 	public void editarItem(Item item, ArrayList<Item> itens) {
-
+		
 	}
 
 	@Override
 	public void excluirItem(Item item, ArrayList<Item> itens) {
-
+		itens.remove(item);
 	}
 
 	@Override
 	public void listarItens(ArrayList<Item> itens) {
-
+		for(Item item : itens) {
+			System.out.println(item);
+		}
 	}
 }
