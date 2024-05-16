@@ -9,11 +9,12 @@ public class Mesa {
 	private boolean reservado;
 	private ArrayList<Mesa> listaMesas;
 
-	//construtor
+	//construtor que ja adiciona o usuário na lista de usuarios
 	public Mesa(int numero, int numLugares, boolean reservado) {
 		this.numero = numero;
 		this.numLugares = numLugares;
 		this.reservado = reservado;
+		listaMesas.add(this);
 	}
 
 	//getters e setters
@@ -42,12 +43,6 @@ public class Mesa {
 	//método para verificar o estado da mesa
 	public boolean isReservado() {
 		return reservado;
-	}
-
-	//método para adicionar mesa na lista de mesas
-	public void adicionarMesa(Mesa mesa, ArrayList<Mesa> listaMesas) {
-		listaMesas.add(mesa);
-
 	}
 
 	//método para excluir uma mesa da lista

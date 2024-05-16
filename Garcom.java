@@ -9,11 +9,12 @@ public class Garcom extends Usuario{
 
 	private ArrayList<Usuario> listaUsuarios;
 
-	//construtor
+	//construtor que ja adiciona o usuário na lista de usuarios
 	public Garcom(String nome, String turno, int idGarcom) {
 		super(nome);
 		this.turno = turno;
 		this.idGarcom = idGarcom;
+		listaUsuarios.add(this);
 	}
 	//getters e setters
 	public String getTurno() {
@@ -33,11 +34,6 @@ public class Garcom extends Usuario{
 	}
 
 	//métodos
-	//método para adicionar um novo usuário dentro da lista de usuários
-	public void adicionarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) {
-		listaUsuarios.add(usuario);
-
-	}
 
 	//método para excluir usuários da lista
 	public void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
