@@ -41,8 +41,8 @@ public class MenuBebidas extends Menu {
     }
 
     @Override
-    public void exibirMenu(Menu menu) {
-        for(Item item : menu.getItens()){
+    public void exibirMenu() {
+        for(Item item : this.getItens()){
             System.out.println(item);
         }
     }

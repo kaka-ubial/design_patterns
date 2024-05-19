@@ -32,6 +32,6 @@ public abstract class Menu {
 
 	public abstract Menu deletarMenu(Menu menu, ArrayList<Item> itens);
 
-	public abstract void exibirMenu(Menu menu);
+	public abstract void exibirMenu();
 
 }
