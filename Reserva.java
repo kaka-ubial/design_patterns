@@ -60,12 +60,16 @@ public class Reserva {
 
 	//método para visualizar todas as reservas na lista de reservas
 	public void visualizarReservas(ArrayList<Reserva> listaReservas) {
-		for (Reserva reserva : listaReservas) {
-			System.out.println("Data da Reserva: " + reserva.getDataReserva());
-			System.out.println("Mesa: " + reserva.getMesa());
-			System.out.println("Cliente: " + reserva.getCliente());
-			System.out.println("----------------------------------");
+		if (listaReservas.isEmpty()){
+			System.out.println("Nenhuma reserva encontrada.");
 		}
+		else{
+			for (Reserva reserva : listaReservas) {
+				System.out.println("Data da Reserva: " + reserva.getDataReserva());
+				System.out.println("Mesa: " + reserva.getMesa());
+				System.out.println("Cliente: " + reserva.getCliente());
+				System.out.println("----------------------------------");
+			}}
 	}
 
 
