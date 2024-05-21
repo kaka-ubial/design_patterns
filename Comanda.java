@@ -97,12 +97,17 @@ public class Comanda {
 	}
 
 	//método para exibir a lista de comandas:
-	public ArrayList exibirListaComandas(ArrayList listaComandas) {
-		return listaComandas;
+	public void exibirListaComandas(ArrayList listaComandas) {
+		if (listaComandas.isEmpty()){
+			System.out.println("Nenhuma comanda encontrada.");
+		}
+		else{
+			System.out.println(listaComandas);
+		}
 	}
 
 	//método para mudar o estado da comanda para paga
-	public void pagarComanda(){
+	public void confirmarPagamentoComanda(){
 		pago = true;
 		System.out.println("A comanda " + idComanda + "foi paga");
 	}
