@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AdicionarVinhoInterface {
+public class AdicionarVinho {
     private JButton adicionarVinhoButton;
     private JTextField addVinhoNome;
     private JTextField addVinhoAlcool;
@@ -24,7 +24,7 @@ public class AdicionarVinhoInterface {
     private JTextField addVinhoCorpo;
     private JButton voltarButton;
 
-    public AdicionarVinhoInterface() {
+    public AdicionarVinho() {
         adicionarVinhoButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

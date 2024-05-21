@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AddBebida {
+public class AdicionarBebida {
     private JTextField nomeBebida;
     private JTextField descricaoBebida;
     private JTextField precoBebida;
@@ -10,7 +10,7 @@ public class AddBebida {
     private JButton adicionarBebidaButton;
     private JButton voltarButton;
 
-    public AddBebida() {
+    public AdicionarBebida() {
         adicionarBebidaButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
