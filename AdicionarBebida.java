@@ -2,14 +2,16 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class InterfaceCartaVinhos {
-    private JTable vinhosList;
-    private JPanel cartaVinhos;
-    private JButton adicionarVinhoButton;
+public class AdicionarBebida {
+    private JTextField nomeBebida;
+    private JTextField descricaoBebida;
+    private JTextField precoBebida;
+    private JComboBox temAlcoolBebida;
+    private JButton adicionarBebidaButton;
     private JButton voltarButton;
 
-    public InterfaceCartaVinhos() {
-        adicionarVinhoButton.addMouseListener(new MouseAdapter() {
+    public AdicionarBebida() {
+        adicionarBebidaButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -21,9 +23,5 @@ public class InterfaceCartaVinhos {
                 super.mouseClicked(e);
             }
         });
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }

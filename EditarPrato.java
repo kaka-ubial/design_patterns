@@ -2,27 +2,28 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class InterfaceMenuBebidas {
-    private JTable bebidasList;
-    private JButton adicionarBebidaButton;
+public class EditarPrato {
+    private JRadioButton semGlutenRadioButton;
+    private JRadioButton veganoRadioButton;
+    private JButton editarPratoButton;
     private JButton voltarButton;
+    private JTextField nomePrato;
+    private JTextField descricaoPrato;
+    private JTextField precoPrato;
+    private JRadioButton semLactoseRadioButton;
 
-    public InterfaceMenuBebidas() {
+    public EditarPrato() {
         voltarButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
             }
         });
-        adicionarBebidaButton.addMouseListener(new MouseAdapter() {
+        editarPratoButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
             }
         });
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
