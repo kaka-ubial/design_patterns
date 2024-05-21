@@ -7,13 +7,19 @@ public class Garcom extends Usuario{
 
 	private int idGarcom;
 
+	private String email;
+
+	private String senha;
+
 	private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
 	//construtor que ja adiciona o usuário na lista de usuarios
-	public Garcom(String nome, String turno, int idGarcom) {
+	public Garcom(String nome, String turno, int idGarcom, String email, String senha) {
 		super(nome);
 		this.turno = turno;
 		this.idGarcom = idGarcom;
+		this.email = email;
+		this.senha = senha;
 
 		listaUsuarios.add(this);
 	}
@@ -32,6 +38,22 @@ public class Garcom extends Usuario{
 
 	public ArrayList<Usuario> getlistaUsuarios() {
 		return listaUsuarios;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public void setIdGarcom(int idGarcom) {
@@ -54,6 +76,8 @@ public class Garcom extends Usuario{
 				garcom.setNome(nome);
 				garcom.setTurno(turno);
 				garcom.setIdGarcom(idGarcom);
+				garcom.setEmail(email);
+				garcom.setSenha(senha);
 				listaUsuarios.set(index, garcom);
 			} else {
 				System.out.println("Apenas garçons podem ser editados.");
