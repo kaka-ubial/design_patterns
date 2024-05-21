@@ -22,7 +22,12 @@
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <autoCreateRowSorter value="false"/>
+          <showHorizontalLines value="true"/>
+          <showVerticalLines value="true"/>
+          <toolTipText value=""/>
+        </properties>
       </component>
     </children>
   </grid>
