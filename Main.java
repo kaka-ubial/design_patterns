@@ -1,10 +1,22 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
-    private static int lastGarcomId = 1; 
+
+    private static int lastGarcomId = 1;
 
     public static void main(String[] args) {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurante", "root", "PUC@1234");
+            System.out.println("Conexão estabelecida com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+
         new Screen();
         int idGarcom;
         ArrayList<Item> comidas = new ArrayList<>();
@@ -44,15 +56,17 @@ public class Main {
                                 break;
                             case "3":
                                 menuDeVinhos.exibirMenu();
-                                break;                        
+                                break;
                             default:
+                                System.out.println("Opção inválida.");
                                 break;
                         }
                         break;
                     case "2":
-                        System.out.println("");
+                        System.out.println("Função de reserva não implementada.");
                         break;
                     default:
+                        System.out.println("Opção inválida.");
                         break;
                 }
                 break;
@@ -67,7 +81,7 @@ public class Main {
                 String senhaGarcom = scanner.nextLine();
                 Garcom garcom = new Garcom(nomeGarcom, turnoGarcom, lastGarcomId, emailGarcom, senhaGarcom);
                 lastGarcomId++;
-                System.out.println(garcom.getlistaUsuarios());;
+                System.out.println(garcom.getlistaUsuarios());
                 System.out.println("Bem vindo, " + garcom.getNome());
                 System.out.println("MENU");
                 System.out.println("1 - Menus do Restaurante\n2 - Reservas\n3 - Mesas\n");
@@ -81,18 +95,19 @@ public class Main {
                         String opcaoReservas = scanner.nextLine();
                         switch (opcaoReservas) {
                             case "1":
-                            
-                            break;
+                                System.out.println("Adicionar reserva não implementado.");
+                                break;
                             case "2":
-                                
+                                System.out.println("Editar reserva não implementado.");
                                 break;
                             case "3":
-                                
+                                System.out.println("Excluir reserva não implementado.");
                                 break;
                             case "4":
-                                
-                                break; 
+                                System.out.println("Listar reservas não implementado.");
+                                break;
                             default:
+                                System.out.println("Opção inválida.");
                                 break;
                         }
                         break;
@@ -101,29 +116,32 @@ public class Main {
                         String opcaoMesas = scanner.nextLine();
                         switch (opcaoMesas) {
                             case "1":
-                                
+                                System.out.println("Adicionar mesa não implementado.");
                                 break;
                             case "2":
-                                
+                                System.out.println("Editar mesa não implementado.");
                                 break;
                             case "3":
-                                
+                                System.out.println("Excluir mesa não implementado.");
                                 break;
                             case "4":
-                                
-                                break;                       
+                                System.out.println("Listar mesas não implementado.");
+                                break;
                             default:
+                                System.out.println("Opção inválida.");
                                 break;
                         }
                         break;
                     default:
+                        System.out.println("Opção inválida.");
                         break;
                 }
-
                 break;
             default:
+                System.out.println("Opção inválida.");
                 break;
         }
 
+        scanner.close();
     }
 }
