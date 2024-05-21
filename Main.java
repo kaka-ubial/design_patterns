@@ -61,7 +61,11 @@ public class Main {
                 String nomeGarcom = scanner.nextLine();
                 System.out.println("Qual seu turno?");
                 String turnoGarcom = scanner.nextLine();
-                Garcom garcom = new Garcom(nomeGarcom, turnoGarcom, lastGarcomId);
+                System.out.println("Qual seu email?");
+                String emailGarcom = scanner.nextLine();
+                System.out.println("Qual sua senha?");
+                String senhaGarcom = scanner.nextLine();
+                Garcom garcom = new Garcom(nomeGarcom, turnoGarcom, lastGarcomId, emailGarcom, senhaGarcom);
                 lastGarcomId++;
                 System.out.println(garcom.getlistaUsuarios());;
                 System.out.println("Bem vindo, " + garcom.getNome());
