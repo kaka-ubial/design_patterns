@@ -5,7 +5,7 @@ public class Main {
     private static int lastGarcomId = 1; 
 
     public static void main(String[] args) {
-        /* new Screen(); */
+        new Screen();
         int idGarcom;
 
 
