@@ -10,7 +10,7 @@ public class Mesa {
 	private ArrayList<Mesa> listaMesas = new ArrayList<>();
 
 	//construtor que ja adiciona o usuário na lista de usuarios
-	public Mesa(int numero, int numLugares, boolean reservado, Mesa mesa) {
+	public Mesa(int numero, int numLugares, boolean reservado) {
 		this.numero = numero;
 		this.numLugares = numLugares;
 		this.reservado = reservado;
