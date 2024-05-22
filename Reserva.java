@@ -43,6 +43,14 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 
+	public ArrayList<Reserva> getListaReservas() {
+		return listaReservas;
+	}
+
+	public void setListaReservas(ArrayList<Reserva> listaReservas) {
+		this.listaReservas = listaReservas;
+	}
+
 	//métodos
 	//método para cancelar uma reserva, remove ela da lista e muda o estado da mesa para reservada =  false
 	public void cancelarReserva(Reserva reserva) {

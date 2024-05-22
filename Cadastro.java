@@ -14,6 +14,13 @@ public class Cadastro {
     private JPanel cadastro;
     private JButton cadastrarButton;
     private JButton loginExisteButton;
+    private JTabbedPane tabbedPane1;
+    private JLabel emailLoginLabel;
+    private JLabel senhaLoginLabel;
+    private JTextField emailLogin;
+    private JPasswordField passwordLogin;
+    private JButton logarButton;
+    private JButton semCadastroButton;
 
     public Cadastro() {
         loginExisteButton.addMouseListener(new MouseAdapter() {

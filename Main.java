@@ -3,12 +3,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import javax.swing.*;
+
 
 public class Main {
-
     private static int lastGarcomId = 1;
 
     public static void main(String[] args) {
+
+
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurante", "root", "PUC@1234");
             System.out.println("Conexão estabelecida com sucesso!");
