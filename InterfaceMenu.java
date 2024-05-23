@@ -56,17 +56,6 @@ public class InterfaceMenu {
     private JList list3;
     private JScrollBar scrollBar5;
     private JScrollBar scrollBar6;
-    private JTabbedPane tabbedPane6;
-    private JList list4;
-    private JTable table2;
-    private JRadioButton reservadaRadioButton;
-    private JRadioButton nãoReservadaRadioButton;
-    private JButton criarNovaMesaButton;
-    private JTextField numMesa;
-    private JTextField númeroDaMesaTextField;
-    private JTextField númeroDeLugaresTextField;
-    private JButton editarDadosButton;
-    private JList list5;
 
 
     public InterfaceMenu() {
