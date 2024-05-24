@@ -40,7 +40,7 @@
               </hspacer>
             </children>
           </grid>
-          <tabbedpane id="fea07" binding="menusVinhos">
+          <tabbedpane id="fea07" binding="menuCardapios" custom-create="true">
             <constraints>
               <tabbedpane title="Menus"/>
             </constraints>
@@ -72,12 +72,12 @@
                     <properties/>
                     <border type="none" title="Ações"/>
                     <children>
-                      <tabbedpane id="21620" binding="tabbedPane1" default-binding="true">
+                      <tabbedpane id="21620" binding="acoesBebidas">
                         <constraints/>
                         <properties/>
                         <border type="none"/>
                         <children>
-                          <grid id="2aeeb" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                          <grid id="2aeeb" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                             <margin top="0" left="0" bottom="0" right="0"/>
                             <constraints>
                               <tabbedpane title="Adicionar Bebida"/>
@@ -109,15 +109,7 @@
                                   <text value="Preço"/>
                                 </properties>
                               </component>
-                              <component id="8239" class="javax.swing.JLabel">
-                                <constraints>
-                                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <text value="Alcoólica?"/>
-                                </properties>
-                              </component>
-                              <component id="bd2ae" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+                              <component id="bd2ae" class="javax.swing.JTextField" binding="adicionarNomeBebida">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -125,7 +117,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="81aea" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+                              <component id="81aea" class="javax.swing.JTextField" binding="adicionarDescricaoBebida">
                                 <constraints>
                                   <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -133,7 +125,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="d2af7" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+                              <component id="d2af7" class="javax.swing.JTextField" binding="adicionarPrecoBebida">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -141,25 +133,17 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="a1486" class="javax.swing.JRadioButton" binding="simRadioButton" default-binding="true">
+                              <component id="a1486" class="javax.swing.JRadioButton" binding="adicionarIsAlcoolicaBebida">
                                 <constraints>
                                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
-                                  <text value="Sim"/>
+                                  <text value="Alcoólica"/>
                                 </properties>
                               </component>
-                              <component id="f2d49" class="javax.swing.JRadioButton" binding="nãoRadioButton" default-binding="true">
+                              <component id="cd32d" class="javax.swing.JButton" binding="adicionarBebidaButton" custom-create="true" default-binding="true">
                                 <constraints>
-                                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <text value="Não"/>
-                                </properties>
-                              </component>
-                              <component id="cd32d" class="javax.swing.JButton" binding="adicionarBebidaButton" default-binding="true">
-                                <constraints>
-                                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
                                   <text value="Adicionar Bebida"/>
@@ -167,7 +151,7 @@
                               </component>
                             </children>
                           </grid>
-                          <grid id="fe068" layout-manager="GridLayoutManager" row-count="7" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                          <grid id="fe068" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                             <margin top="0" left="0" bottom="0" right="0"/>
                             <constraints>
                               <tabbedpane title="Editar Bebida"/>
@@ -199,15 +183,7 @@
                                   <text value="Preço"/>
                                 </properties>
                               </component>
-                              <component id="3e20" class="javax.swing.JLabel">
-                                <constraints>
-                                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <text value="Alcoólica?"/>
-                                </properties>
-                              </component>
-                              <component id="47a17" class="javax.swing.JTextField" default-binding="true">
+                              <component id="47a17" class="javax.swing.JTextField" binding="editarPrecoBebida">
                                 <constraints>
                                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -215,31 +191,23 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="f4378" class="javax.swing.JRadioButton" default-binding="true">
+                              <component id="f4378" class="javax.swing.JRadioButton" binding="editarAlcoolicaBebida">
                                 <constraints>
                                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
-                                  <text value="Sim"/>
+                                  <text value="Alcoólica"/>
                                 </properties>
                               </component>
-                              <component id="20cf1" class="javax.swing.JRadioButton" default-binding="true">
+                              <component id="a519" class="javax.swing.JButton" binding="editarBebidaButton">
                                 <constraints>
-                                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
-                                  <text value="Não"/>
+                                  <text value="Editar Bebida"/>
                                 </properties>
                               </component>
-                              <component id="a519" class="javax.swing.JButton" default-binding="true">
-                                <constraints>
-                                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                                </constraints>
-                                <properties>
-                                  <text value="Adicionar Bebida"/>
-                                </properties>
-                              </component>
-                              <component id="16a93" class="javax.swing.JTextField" default-binding="true">
+                              <component id="16a93" class="javax.swing.JTextField" binding="editarDescricaoBebida">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -247,7 +215,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="2b883" class="javax.swing.JTextField" default-binding="true">
+                              <component id="2b883" class="javax.swing.JTextField" binding="editarNomeList">
                                 <constraints>
                                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -263,7 +231,7 @@
                                   <text value="Qual bebida você deseja editar?"/>
                                 </properties>
                               </component>
-                              <component id="84e92" class="javax.swing.JList" binding="list1" default-binding="true">
+                              <component id="84e92" class="javax.swing.JList" binding="editarBebidaList">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="50"/>
@@ -295,7 +263,7 @@
                                   <text value="Qual bebida você deseja deletar?"/>
                                 </properties>
                               </component>
-                              <component id="e8a26" class="javax.swing.JList" default-binding="true">
+                              <component id="e8a26" class="javax.swing.JList" binding="excluirBebidaList">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="50"/>
@@ -350,7 +318,7 @@
                     <properties/>
                     <border type="none" title="Ações"/>
                     <children>
-                      <tabbedpane id="2f205" binding="tabbedPane2" default-binding="true">
+                      <tabbedpane id="2f205" binding="acoesPrato">
                         <constraints/>
                         <properties/>
                         <border type="none"/>
@@ -395,7 +363,7 @@
                                   <text value="Categoria"/>
                                 </properties>
                               </component>
-                              <component id="fcc57" class="javax.swing.JCheckBox" binding="semGlútenCheckBox" default-binding="true">
+                              <component id="fcc57" class="javax.swing.JCheckBox" binding="semGlutenCheckBox">
                                 <constraints>
                                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -419,15 +387,15 @@
                                   <text value="Vegano"/>
                                 </properties>
                               </component>
-                              <component id="1f9f3" class="javax.swing.JButton" binding="button1" default-binding="true">
+                              <component id="1f9f3" class="javax.swing.JButton" binding="adicionarPratoButton">
                                 <constraints>
                                   <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
-                                  <text value="Button"/>
+                                  <text value="Adicionar Prato"/>
                                 </properties>
                               </component>
-                              <component id="a4120" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+                              <component id="a4120" class="javax.swing.JTextField" binding="addPratoNome">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -435,7 +403,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="8f9ef" class="javax.swing.JTextField" binding="textField5" default-binding="true">
+                              <component id="8f9ef" class="javax.swing.JTextField" binding="addDescricaoNome">
                                 <constraints>
                                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -443,7 +411,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="74825" class="javax.swing.JTextField" binding="textField6" default-binding="true">
+                              <component id="74825" class="javax.swing.JTextField" binding="addPrecoNome">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -485,15 +453,15 @@
                                   <text value="Categoria"/>
                                 </properties>
                               </component>
-                              <component id="b79be" class="javax.swing.JButton" default-binding="true">
+                              <component id="b79be" class="javax.swing.JButton" binding="editarPratoButton">
                                 <constraints>
                                   <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
-                                  <text value="Button"/>
+                                  <text value="Editar Prato"/>
                                 </properties>
                               </component>
-                              <component id="a0110" class="javax.swing.JTextField" default-binding="true">
+                              <component id="a0110" class="javax.swing.JTextField" binding="editPratoNome">
                                 <constraints>
                                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -517,7 +485,7 @@
                                   <text value="Vegano"/>
                                 </properties>
                               </component>
-                              <component id="d685c" class="javax.swing.JTextField" default-binding="true">
+                              <component id="d685c" class="javax.swing.JTextField" binding="editPratoDescricao">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -525,7 +493,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="ec739" class="javax.swing.JTextField" default-binding="true">
+                              <component id="ec739" class="javax.swing.JTextField" binding="editPratoPreco">
                                 <constraints>
                                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -555,7 +523,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="3aaf7" class="javax.swing.JList" binding="list2" default-binding="true">
+                              <component id="3aaf7" class="javax.swing.JList" binding="listPratosEditar">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="50"/>
@@ -589,15 +557,15 @@
                                   <text value="Qual prato deseja deletar?"/>
                                 </properties>
                               </component>
-                              <component id="60780" class="javax.swing.JButton" default-binding="true">
+                              <component id="60780" class="javax.swing.JButton" binding="deletarPratoButton">
                                 <constraints>
                                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
                                 <properties>
-                                  <text value="Button"/>
+                                  <text value="Deletar Prato"/>
                                 </properties>
                               </component>
-                              <component id="fff54" class="javax.swing.JList" default-binding="true">
+                              <component id="fff54" class="javax.swing.JList" binding="listPratosDeletar">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="50"/>
@@ -644,7 +612,7 @@
                     <properties/>
                     <border type="none" title="Ações"/>
                     <children>
-                      <tabbedpane id="a08ea" binding="tabbedPane3" default-binding="true">
+                      <tabbedpane id="a08ea" binding="acoesVinho">
                         <constraints/>
                         <properties/>
                         <border type="none"/>
@@ -729,7 +697,7 @@
                                   <text value="Teor Alc."/>
                                 </properties>
                               </component>
-                              <component id="e1212" class="javax.swing.JTextField" binding="textField7" default-binding="true">
+                              <component id="e1212" class="javax.swing.JTextField" binding="addVinhoNome" custom-create="true">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -737,7 +705,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="45b53" class="javax.swing.JTextField" binding="textField8" default-binding="true">
+                              <component id="45b53" class="javax.swing.JTextField" binding="addVinhoDescricao" custom-create="true">
                                 <constraints>
                                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -745,7 +713,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="ea938" class="javax.swing.JTextField" binding="textField9" default-binding="true">
+                              <component id="ea938" class="javax.swing.JTextField" binding="addVinhoPreco" custom-create="true">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -753,7 +721,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="1dfed" class="javax.swing.JTextField" binding="textField10" default-binding="true">
+                              <component id="1dfed" class="javax.swing.JTextField" binding="addVinhoIdade" custom-create="true">
                                 <constraints>
                                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -761,7 +729,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="1b8cc" class="javax.swing.JTextField" binding="textField11" default-binding="true">
+                              <component id="1b8cc" class="javax.swing.JTextField" binding="addVinhoPais" custom-create="true">
                                 <constraints>
                                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -769,7 +737,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="95f2a" class="javax.swing.JTextField" binding="textField12" default-binding="true">
+                              <component id="95f2a" class="javax.swing.JTextField" binding="addVinhoTipo" custom-create="true">
                                 <constraints>
                                   <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -777,7 +745,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="65d12" class="javax.swing.JTextField" binding="textField13" default-binding="true">
+                              <component id="65d12" class="javax.swing.JTextField" binding="addVinhoUva" custom-create="true">
                                 <constraints>
                                   <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -785,7 +753,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="73f61" class="javax.swing.JTextField" binding="textField14" default-binding="true">
+                              <component id="73f61" class="javax.swing.JTextField" binding="addVinhoCorpo" custom-create="true">
                                 <constraints>
                                   <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -793,7 +761,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="39c2c" class="javax.swing.JTextField" binding="textField15" default-binding="true">
+                              <component id="39c2c" class="javax.swing.JTextField" binding="addVinhoTeor" custom-create="true">
                                 <constraints>
                                   <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -801,7 +769,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="9d35f" class="javax.swing.JButton" binding="adicionarVinhoButton" default-binding="true">
+                              <component id="9d35f" class="javax.swing.JButton" binding="adicionarVinhoButton" custom-create="true" default-binding="true">
                                 <constraints>
                                   <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -891,7 +859,7 @@
                                   <text value="Teor Alc."/>
                                 </properties>
                               </component>
-                              <component id="52458" class="javax.swing.JButton" default-binding="true">
+                              <component id="52458" class="javax.swing.JButton" binding="editarVinhoButton" custom-create="true">
                                 <constraints>
                                   <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -899,7 +867,7 @@
                                   <text value="Editar Vinho"/>
                                 </properties>
                               </component>
-                              <component id="947d5" class="javax.swing.JTextField" default-binding="true">
+                              <component id="947d5" class="javax.swing.JTextField" binding="editVinhoUva">
                                 <constraints>
                                   <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -907,7 +875,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="910fd" class="javax.swing.JTextField" default-binding="true">
+                              <component id="910fd" class="javax.swing.JTextField" binding="editVinhoCorpo">
                                 <constraints>
                                   <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -915,7 +883,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="e5426" class="javax.swing.JTextField" default-binding="true">
+                              <component id="e5426" class="javax.swing.JTextField" binding="editVinhoTeor">
                                 <constraints>
                                   <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -923,7 +891,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="c08dc" class="javax.swing.JTextField" default-binding="true">
+                              <component id="c08dc" class="javax.swing.JTextField" binding="editVinhoTipo">
                                 <constraints>
                                   <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -931,7 +899,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="2c635" class="javax.swing.JTextField" default-binding="true">
+                              <component id="2c635" class="javax.swing.JTextField" binding="editVinhoPais">
                                 <constraints>
                                   <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -939,7 +907,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="5faf8" class="javax.swing.JTextField" default-binding="true">
+                              <component id="5faf8" class="javax.swing.JTextField" binding="editVinhoIdade">
                                 <constraints>
                                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -947,7 +915,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="b8134" class="javax.swing.JTextField" default-binding="true">
+                              <component id="b8134" class="javax.swing.JTextField" binding="editVinhoPreco">
                                 <constraints>
                                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -955,7 +923,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="1305f" class="javax.swing.JTextField" default-binding="true">
+                              <component id="1305f" class="javax.swing.JTextField" binding="editVinhoDescricao">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -963,7 +931,7 @@
                                 </constraints>
                                 <properties/>
                               </component>
-                              <component id="ead47" class="javax.swing.JTextField" default-binding="true">
+                              <component id="ead47" class="javax.swing.JTextField" binding="editVinhoNome">
                                 <constraints>
                                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -979,7 +947,7 @@
                                   <text value="Qual vinho você deseja editar?"/>
                                 </properties>
                               </component>
-                              <component id="12665" class="javax.swing.JList" binding="list3" default-binding="true">
+                              <component id="12665" class="javax.swing.JList" binding="vinhoListEditar">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="50"/>
@@ -1011,7 +979,7 @@
                                   <text value="Qual vinho você deseja deletar?"/>
                                 </properties>
                               </component>
-                              <component id="b379b" class="javax.swing.JButton" default-binding="true">
+                              <component id="b379b" class="javax.swing.JButton" binding="deletarVinhoButton" custom-create="true">
                                 <constraints>
                                   <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -1019,7 +987,7 @@
                                   <text value="Deletar Vinho"/>
                                 </properties>
                               </component>
-                              <component id="55932" class="javax.swing.JList" default-binding="true">
+                              <component id="55932" class="javax.swing.JList" binding="vinhoListDeletar">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="50"/>
@@ -1145,7 +1113,7 @@
                               <text value="Itens"/>
                             </properties>
                           </component>
-                          <component id="62a58" class="javax.swing.JList" binding="list4" default-binding="true">
+                          <component id="62a58" class="javax.swing.JList" binding="itensComandaAdd" custom-create="true">
                             <constraints>
                               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                 <preferred-size width="150" height="50"/>
@@ -1153,13 +1121,13 @@
                             </constraints>
                             <properties/>
                           </component>
-                          <component id="3e062" class="javax.swing.JScrollBar" binding="scrollBar7" default-binding="true">
+                          <component id="3e062" class="javax.swing.JScrollBar" binding="scrollBarAddItem" custom-create="true">
                             <constraints>
                               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties/>
                           </component>
-                          <component id="7376" class="javax.swing.JList" binding="list7" default-binding="true">
+                          <component id="7376" class="javax.swing.JList" binding="comandaMesaAdd">
                             <constraints>
                               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                 <preferred-size width="150" height="50"/>
@@ -1199,7 +1167,7 @@
                         <properties/>
                         <border type="none"/>
                         <children>
-                          <component id="ecab4" class="javax.swing.JList" binding="list5" default-binding="true">
+                          <component id="ecab4" class="javax.swing.JList" binding="itemComandaEdit">
                             <constraints>
                               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                 <preferred-size width="150" height="50"/>
@@ -1207,7 +1175,7 @@
                             </constraints>
                             <properties/>
                           </component>
-                          <component id="a4414" class="javax.swing.JList" binding="list6" default-binding="true">
+                          <component id="a4414" class="javax.swing.JList" binding="itemComandaDelete" custom-create="true">
                             <constraints>
                               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
                                 <preferred-size width="150" height="50"/>
@@ -1215,7 +1183,7 @@
                             </constraints>
                             <properties/>
                           </component>
-                          <component id="ab835" class="javax.swing.JButton" binding="button2" default-binding="true">
+                          <component id="ab835" class="javax.swing.JButton" binding="editItemComanda">
                             <constraints>
                               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
@@ -1223,7 +1191,7 @@
                               <text value="Editar Item"/>
                             </properties>
                           </component>
-                          <component id="4c2e2" class="javax.swing.JButton" binding="button3" default-binding="true">
+                          <component id="4c2e2" class="javax.swing.JButton" binding="deleteItemComanda">
                             <constraints>
                               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
