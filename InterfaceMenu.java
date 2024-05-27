@@ -1,10 +1,4 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseAdapter;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 public class InterfaceMenu {
     private JPanel interfaceMenu;
@@ -56,6 +50,12 @@ public class InterfaceMenu {
     private JList list3;
     private JScrollBar scrollBar5;
     private JScrollBar scrollBar6;
+    private JList list7;
+    private JScrollBar scrollBar10;
+    private JButton adicionarComandaButton;
+    private JButton adicionarItemButton;
+    private JSpinner spinner1;
+    private JButton excluirComandaButton;
 
 
     public InterfaceMenu() {
