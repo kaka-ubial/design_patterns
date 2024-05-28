@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Restaurante {
 	//atributos
 	private String nome;
@@ -74,5 +77,19 @@ public class Restaurante {
 		setEndereco(endereco);
 		setHorarioFuncionamento(horarioFuncionamento);
 		setTelefone(telefone);
+	}
+
+	private void salvarRestauranteEmArquivo() {
+		try (FileWriter escritor = new FileWriter("restaurante.txt")) {
+			escritor.write("Nome: " + nome + "\n");
+			escritor.write("Culinaria: " + culinaria + "\n");
+			escritor.write("Descrição: " + descricao + "\n");
+			escritor.write("Endereço: " + endereco + "\n");
+			escritor.write("Horário de Funcionamento: " + horarioFuncionamento + "\n");
+			escritor.write("Telefone: " + telefone + "\n");
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao salvar as informações do restaurante.");
+			e.printStackTrace();
+		}
 	}
 }

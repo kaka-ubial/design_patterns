@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Cliente extends Usuario {
@@ -43,6 +45,15 @@ public class Cliente extends Usuario {
 			}
 		} else {
 			System.out.println("Usuário não encontrado.");
+		}
+	}
+
+	private static void salvarClienteEmArquivo(Cliente cliente) {
+		try (FileWriter escritor = new FileWriter("clientes.txt", true)) {
+			escritor.write("Nome: " + cliente.getNome() + ", Telefone: " + cliente.getTelefone() + "\n");
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao salvar os dados do cliente.");
+			e.printStackTrace();
 		}
 	}
 
