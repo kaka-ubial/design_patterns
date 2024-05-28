@@ -6,14 +6,15 @@ import javax.swing.*;
 
 
 public class Main {
+
     private static int lastGarcomId = 1;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("InterfaceMenu");
-        frame.setContentPane(new InterfaceMenu().getInterfaceMenu());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+//        JFrame frame = new JFrame("InterfaceMenu");
+//        frame.setContentPane(new InterfaceMenu().getInterfaceMenu());
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.pack();
+//        frame.setVisible(true);
 //        int idGarcom;
 //        ArrayList<Item> comidas = new ArrayList<>();
 //        ArrayList<Item> bebidas = new ArrayList<>();

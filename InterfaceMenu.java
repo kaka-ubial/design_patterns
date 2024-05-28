@@ -1,9 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class InterfaceMenu {
+public class InterfaceMenu extends JFrame {
     private JPanel interfaceMenu;
     private JTabbedPane mainMenu;
     private JTabbedPane menuCardapios;
@@ -198,4 +199,21 @@ public class InterfaceMenu {
 
 
         }
+
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+//                JFrame frame = new JFrame("InterfaceMenu");
+                InterfaceMenu interfaceMenu = new InterfaceMenu();
+                interfaceMenu.setVisible(true);
+//                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                frame.getContentPane().add(emptyLabel, BorderLayout.CENTER);
+//                frame.getContentPane().add(new InterfaceMenu().getInterfaceMenu(), BorderLayout.CENTER);
+//                frame.setContentPane(new InterfaceMenu().getInterfaceMenu());
+//                frame.pack();
+//                frame.setVisible(true);
+            }
+        });
+    }
  }
