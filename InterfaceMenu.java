@@ -3,7 +3,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class InterfaceMenu {
+public class InterfaceMenu extends JFrame{
     private JPanel interfaceMenu;
     private JTabbedPane mainMenu;
     private JTabbedPane menuCardapios;
@@ -194,8 +194,25 @@ public class InterfaceMenu {
         });
     }
 
-        private void createUIComponents() {
+    private void createUIComponents() {
 
 
-        }
+    }
+
+
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                InterfaceMenu interfaceMenu = new InterfaceMenu();
+                interfaceMenu.setVisible(true);
+//                JFrame frame = new JFrame("InterfaceMenu");
+//                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                frame.getContentPane().add(new InterfaceMenu().getInterfaceMenu());
+//
+//                frame.pack();
+//                frame.setVisible(true);
+            }
+        });
+    }
  }
