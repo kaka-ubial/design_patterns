@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Reserva {
@@ -80,5 +82,14 @@ public class Reserva {
 			}}
 	}
 
+	private void salvarReservasEmArquivo() {
+		try (FileWriter escritor = new FileWriter("reservas.txt")) {
+			for (Reserva reserva : listaReservas) {
+				escritor.write("Data: " + reserva.getDataReserva() + ", Mesa: " + reserva.getMesa().getNumero() + ", Cliente: " + reserva.getCliente().getNome() + "\n");
+			}
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao salvar as reservas.");
+			e.printStackTrace();
+		}}
 
-}
+    }

@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 public class Garcom extends Usuario{
@@ -84,6 +86,14 @@ public class Garcom extends Usuario{
 			}
 		} else {
 			System.out.println("Usuário não encontrado.");
+		}
+	}
+	private static void salvarGarcomEmArquivo(Garcom garcom) {
+		try (FileWriter escritor = new FileWriter("garcons.txt", true)) {
+			escritor.write("ID: " + garcom.getIdGarcom() + ", Nome: " + garcom.getNome() + ", Turno: " + garcom.getTurno() + ", Email: " + garcom.getEmail() + "\n");
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao salvar os dados do garçom.");
+			e.printStackTrace();
 		}
 	}
 }
