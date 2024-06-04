@@ -88,7 +88,7 @@ public class Garcom extends Usuario{
 			System.out.println("Usuário não encontrado.");
 		}
 	}
-	private static void salvarGarcomEmArquivo(Garcom garcom) {
+	public static void salvarGarcomEmArquivo(Garcom garcom) {
 		try (FileWriter escritor = new FileWriter("garcons.txt", true)) {
 			escritor.write("ID: " + garcom.getIdGarcom() + ", Nome: " + garcom.getNome() + ", Turno: " + garcom.getTurno() + ", Email: " + garcom.getEmail() + "\n");
 		} catch (IOException e) {

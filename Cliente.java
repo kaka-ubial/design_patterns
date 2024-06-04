@@ -48,7 +48,7 @@ public class Cliente extends Usuario {
 		}
 	}
 
-	private static void salvarClienteEmArquivo(Cliente cliente) {
+	public static void salvarClienteEmArquivo(Cliente cliente) {
 		try (FileWriter escritor = new FileWriter("clientes.txt", true)) {
 			escritor.write("Nome: " + cliente.getNome() + ", Telefone: " + cliente.getTelefone() + "\n");
 		} catch (IOException e) {

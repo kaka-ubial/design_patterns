@@ -82,7 +82,7 @@ public class Reserva {
 			}}
 	}
 
-	private void salvarReservasEmArquivo() {
+	public void salvarReservasEmArquivo() {
 		try (FileWriter escritor = new FileWriter("reservas.txt")) {
 			for (Reserva reserva : listaReservas) {
 				escritor.write("Data: " + reserva.getDataReserva() + ", Mesa: " + reserva.getMesa().getNumero() + ", Cliente: " + reserva.getCliente().getNome() + "\n");

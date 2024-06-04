@@ -79,7 +79,7 @@ public class Restaurante {
 		setTelefone(telefone);
 	}
 
-	private void salvarRestauranteEmArquivo() {
+	public void salvarRestauranteEmArquivo() {
 		try (FileWriter escritor = new FileWriter("restaurante.txt")) {
 			escritor.write("Nome: " + nome + "\n");
 			escritor.write("Culinaria: " + culinaria + "\n");
