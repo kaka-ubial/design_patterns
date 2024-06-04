@@ -92,6 +92,7 @@ public class InterfaceMenu extends JFrame{
     private JTextField editVinhoUva;
     private JTextField editVinhoCorpo;
     private JTextField editVinhoTeor;
+    private JTable Mesas;
     private ArrayList<Bebida> catalogoBebidas = new ArrayList<>();
 
     public JPanel getInterfaceMenu() {
