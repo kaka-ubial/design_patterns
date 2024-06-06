@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CartaVinhos extends Menu {
@@ -30,12 +32,11 @@ public class CartaVinhos extends Menu {
         return new CartaVinhos(itens, "Carta de Vinhos");
     }
 
-
     @Override
-    public Menu editarMenu(Menu CartaVinhos, String nome) {
-        CartaVinhos.setNome(nome);
+    public Menu editarMenu(Menu menu, String nome) {
+        menu.setNome(nome);
         return this;
-}
+    }
 
     @Override
     public Menu deletarMenu(Menu menu, ArrayList<Item> itens) {
@@ -45,8 +46,26 @@ public class CartaVinhos extends Menu {
 
     @Override
     public void exibirMenu() {
-        for(Item item : this.getItens()){
+        for (Item item : this.getItens()) {
             System.out.println(item);
+        }
+    }
+
+    public void salvarCartaDeVinhosEmArquivo() {
+        try (FileWriter escritor = new FileWriter("carta_vinhos.txt")) {
+            for (Item item : this.getItens()) {
+                if (item instanceof Vinho) {
+                    Vinho vinho = (Vinho) item;
+                    escritor.write("Nome: " + vinho.getNomeItem() + ", Preço: " + vinho.getPrecoItem() +
+                            ", Descrição: " + vinho.getDescricaoItem() + ", Idade do Vinho: " + vinho.getIdadeVinho() +
+                            ", Nacionalidade: " + vinho.getNacionalidade() + ", Tipo: " + vinho.getTipo() +
+                            ", Uva: " + vinho.getUva() + ", Corpo: " + vinho.getCorpo() +
+                            ", Teor Alcoólico: " + vinho.getTeorAlcoolico() + "\n");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Ocorreu um erro ao salvar a carta de vinhos.");
+            e.printStackTrace();
         }
     }
 }
