@@ -1,31 +1,24 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-public class Garcom extends Usuario{
 
-	//atributos
+public class Garcom extends Usuario {
+
 	private String turno;
-
 	private int idGarcom;
-
 	private String email;
-
 	private String senha;
-
 	private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-	//construtor que ja adiciona o usuário na lista de usuarios
 	public Garcom(String nome, String turno, int idGarcom, String email, String senha) {
 		super(nome);
 		this.turno = turno;
 		this.idGarcom = idGarcom;
 		this.email = email;
 		this.senha = senha;
-
 		listaUsuarios.add(this);
 	}
-	//getters e setters
+
 	public String getTurno() {
 		return turno;
 	}
@@ -62,17 +55,15 @@ public class Garcom extends Usuario{
 		this.idGarcom = idGarcom;
 	}
 
-	//métodos
-
-	//método para excluir usuários da lista
-	public void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
-		listaUsuarios.remove(usuario);
+	public void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) throws UsuarioNaoEncontradoException {
+		if (!listaUsuarios.remove(usuario)) {
+			throw new UsuarioNaoEncontradoException("Usuário não encontrado.");
+		}
 	}
 
-	//método para editar um usuário da lista
-	public void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios){
+	public void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) throws UsuarioNaoEncontradoException {
 		int index = listaUsuarios.indexOf(usuario);
-		if (index != -1){
+		if (index != -1) {
 			if (usuario instanceof Garcom) {
 				Garcom garcom = (Garcom) usuario;
 				garcom.setNome(nome);
@@ -82,12 +73,13 @@ public class Garcom extends Usuario{
 				garcom.setSenha(senha);
 				listaUsuarios.set(index, garcom);
 			} else {
-				System.out.println("Apenas garçons podem ser editados.");
+				throw new UsuarioNaoEncontradoException("Apenas garçons podem ser editados.");
 			}
 		} else {
-			System.out.println("Usuário não encontrado.");
+			throw new UsuarioNaoEncontradoException("Usuário não encontrado.");
 		}
 	}
+
 	public void salvarGarcomEmArquivo(Garcom garcom) {
 		try (FileWriter escritor = new FileWriter("garcom.txt")) {
 			for (Usuario usuario : listaUsuarios) {

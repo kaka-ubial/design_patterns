@@ -3,24 +3,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Reserva {
-	//atributos
+	// atributos
 	private String dataReserva;
-
 	private Mesa mesa;
-
 	private Cliente cliente;
+	private static ArrayList<Reserva> listaReservas = new ArrayList<>();
 
-	private ArrayList<Reserva> listaReservas = new ArrayList<>();
-
-	//construtor que adiciona a reserva na lista logo depois do objeto ser instanciado
-	public Reserva(String dataReserva, Mesa mesa, Cliente cliente) {
+	// construtor que adiciona a reserva na lista logo depois do objeto ser instanciado
+	public Reserva(String dataReserva, Mesa mesa, Cliente cliente) throws MesaJaReservadaException, MesaNaoEncontradaException {
+		if (mesa.isReservado()) {
+			throw new MesaJaReservadaException("A mesa já está reservada.");
+		}
+		if (!Mesa.getListaMesas().contains(mesa)) {
+			throw new MesaNaoEncontradaException("A mesa não foi encontrada.");
+		}
 		this.dataReserva = dataReserva;
 		this.mesa = mesa;
 		this.cliente = cliente;
+		mesa.reservarMesa(mesa);
 		listaReservas.add(this);
 	}
 
-	//getters e setters
+	// getters e setters
 	public String getDataReserva() {
 		return dataReserva;
 	}
@@ -53,33 +57,38 @@ public class Reserva {
 		this.listaReservas = listaReservas;
 	}
 
-	//métodos
-	//método para cancelar uma reserva, remove ela da lista e muda o estado da mesa para reservada =  false
-	public void cancelarReserva(Reserva reserva) {
+	// métodos
+
+	// método para cancelar uma reserva, remove ela da lista e muda o estado da mesa para reservada = false
+	public void cancelarReserva(Reserva reserva) throws MesaNaoEncontradaException {
 		listaReservas.remove(reserva);
 		Mesa mesa = reserva.getMesa();
-		mesa.cancelarReservaMesa(mesa);
+		if (Mesa.getListaMesas().contains(mesa)) {
+			mesa.cancelarReservaMesa(mesa);
+		} else {
+			throw new MesaNaoEncontradaException("Mesa não encontrada.");
+		}
 	}
 
-	//método para editar uma reserva
+	// método para editar uma reserva
 	public void editarReserva(Reserva reserva) {
 		reserva.setDataReserva(dataReserva);
 		reserva.setCliente(cliente);
 		reserva.setMesa(mesa);
 	}
 
-	//método para visualizar todas as reservas na lista de reservas
+	// método para visualizar todas as reservas na lista de reservas
 	public void visualizarReservas(ArrayList<Reserva> listaReservas) {
-		if (listaReservas.isEmpty()){
+		if (listaReservas.isEmpty()) {
 			System.out.println("Nenhuma reserva encontrada.");
-		}
-		else{
+		} else {
 			for (Reserva reserva : listaReservas) {
 				System.out.println("Data da Reserva: " + reserva.getDataReserva());
-				System.out.println("Mesa: " + reserva.getMesa());
-				System.out.println("Cliente: " + reserva.getCliente());
+				System.out.println("Mesa: " + reserva.getMesa().getNumero());
+				System.out.println("Cliente: " + reserva.getCliente().getNome());
 				System.out.println("----------------------------------");
-			}}
+			}
+		}
 	}
 
 	public void salvarReservasEmArquivo() {
@@ -90,6 +99,6 @@ public class Reserva {
 		} catch (IOException e) {
 			System.out.println("Ocorreu um erro ao salvar as reservas.");
 			e.printStackTrace();
-		}}
-
-    }
+		}
+	}
+}
