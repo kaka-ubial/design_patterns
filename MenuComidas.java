@@ -44,8 +44,8 @@ public class MenuComidas extends Menu {
         return this;
     }
 
-    @Override
     public void exibirMenu() {
+        System.out.println("Menu de Comidas: ");
         for(Item item : this.getItens()){
             System.out.println(item);
         }

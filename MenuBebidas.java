@@ -43,8 +43,8 @@ public class MenuBebidas extends Menu {
         return this;
     }
 
-    @Override
     public void exibirMenu() {
+        System.out.println("Menu de Bebidas: ");
         for(Item item : this.getItens()){
             System.out.println(item);
         }

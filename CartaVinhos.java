@@ -44,9 +44,9 @@ public class CartaVinhos extends Menu {
         return this;
     }
 
-    @Override
     public void exibirMenu() {
-        for (Item item : this.getItens()) {
+        System.out.println("Carta de vinhos: ");
+        for(Item item : this.getItens()){
             System.out.println(item);
         }
     }

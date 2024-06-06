@@ -33,6 +33,12 @@ Menu {
 
 	public abstract Menu deletarMenu(Menu menu, ArrayList<Item> itens);
 
-	public abstract void exibirMenu();
+	public void exibirMenu(){
+		System.out.println("Menu: ");
+		for(Item item : this.getItens()){
+			System.out.println(item);
+		}
+	};
+
 
 }
