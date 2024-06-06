@@ -88,11 +88,16 @@ public class Garcom extends Usuario{
 			System.out.println("Usuário não encontrado.");
 		}
 	}
-	public static void salvarGarcomEmArquivo(Garcom garcom) {
-		try (FileWriter escritor = new FileWriter("garcons.txt", true)) {
-			escritor.write("ID: " + garcom.getIdGarcom() + ", Nome: " + garcom.getNome() + ", Turno: " + garcom.getTurno() + ", Email: " + garcom.getEmail() + "\n");
+	public void salvarGarcomEmArquivo(Garcom garcom) {
+		try (FileWriter escritor = new FileWriter("garcom.txt")) {
+			for (Usuario usuario : listaUsuarios) {
+				if (usuario instanceof Garcom) {
+					Garcom garcom1 = (Garcom) garcom;
+					escritor.write("Garçom: " + garcom.getNome() + ", Turno: " + garcom.getTurno() + ", Id: " + garcom.getIdGarcom() + "\n");
+				}
+			}
 		} catch (IOException e) {
-			System.out.println("Ocorreu um erro ao salvar os dados do garçom.");
+			System.out.println("Ocorreu um erro ao salvar os clientes.");
 			e.printStackTrace();
 		}
 	}

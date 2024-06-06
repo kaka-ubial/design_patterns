@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Mesa {
@@ -75,4 +77,14 @@ public class Mesa {
 		reservado = false;
 	}
 
+	public void salvarMesaEmArquivo() {
+		try (FileWriter escritor = new FileWriter("mesas.txt")) {
+			for (Mesa mesa : listaMesas) {
+				escritor.write("Mesa: " + mesa.getNumero() + ", Número de lugares: " + mesa.getNumLugares() + ", Reservado: " + mesa.isReservado() + "\n");
+			}
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao salvar as mesas.");
+			e.printStackTrace();
+		}
+	}
 }

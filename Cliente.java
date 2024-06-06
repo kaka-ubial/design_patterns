@@ -47,16 +47,19 @@ public class Cliente extends Usuario {
 			System.out.println("Usuário não encontrado.");
 		}
 	}
-
-	public static void salvarClienteEmArquivo(Cliente cliente) {
-		try (FileWriter escritor = new FileWriter("clientes.txt", true)) {
-			escritor.write("Nome: " + cliente.getNome() + ", Telefone: " + cliente.getTelefone() + "\n");
+	public void salvarClienteEmArquivo() {
+		try (FileWriter escritor = new FileWriter("clientes.txt")) {
+			for (Usuario usuario : listaUsuarios) {
+				if (usuario instanceof Cliente) {
+					Cliente cliente = (Cliente) usuario;
+					escritor.write("Cliente: " + cliente.getNome() + ", Telefone: " + cliente.getTelefone() + "\n");
+				}
+			}
 		} catch (IOException e) {
-			System.out.println("Ocorreu um erro ao salvar os dados do cliente.");
+			System.out.println("Ocorreu um erro ao salvar os clientes.");
 			e.printStackTrace();
 		}
 	}
-
 }
 
 
