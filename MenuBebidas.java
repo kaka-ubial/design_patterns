@@ -1,50 +1,71 @@
 import java.util.ArrayList;
+
 public class MenuBebidas extends Menu {
     public MenuBebidas(ArrayList<Item> itens, String nome) {
         super(itens, nome);
     }
 
+    // Método para adicionar uma bebida ao menu de bebidas
     @Override
-    public ArrayList<Item> getItens() {
-        return super.getItens();
+    public void adicionarItem(Item item) {
+        if (item instanceof Bebida) {
+            this.itens.add(item);
+            System.out.println("Bebida adicionada com sucesso!");
+        } else {
+            System.out.println("O item não é uma bebida e não pode ser adicionado ao menu de bebidas.");
+        }
+    }
+
+    // Método para editar uma bebida do menu de bebidas
+    @Override
+    public void editarItem(String nomeBebida, Item novoItem) {
+        for (Item item : this.itens) {
+            if (item instanceof Bebida && item.getNomeItem().equalsIgnoreCase(nomeBebida)) {
+                int index = this.itens.indexOf(item);
+                this.itens.set(index, novoItem);
+                System.out.println("Bebida editada com sucesso!");
+                return;
+            }
+        }
+        System.out.println("Bebida não encontrada no menu de bebidas.");
+    }
+
+    // Método para deletar uma bebida do menu de bebidas
+    @Override
+    public void deletarItem(String nomeBebida) {
+        for (Item item : this.itens) {
+            if (item instanceof Bebida && item.getNomeItem().equalsIgnoreCase(nomeBebida)) {
+                this.itens.remove(item);
+                System.out.println("Bebida deletada com sucesso!");
+                return;
+            }
+        }
+        System.out.println("Bebida não encontrada no menu de bebidas.");
     }
 
     @Override
-    public void setItens(ArrayList<Item> itens) {
-        super.setItens(itens);
+    public Menu criarMenu(ArrayList<Item> itens) {
+        return new MenuBebidas(itens, this.nome);
     }
 
     @Override
-    public String getNome() {
-        return super.getNome();
-    }
-
-    @Override
-    public void setNome(String nome) {
-        super.setNome(nome);
-    }
-
-    public Menu criarMenu(ArrayList<Item> itens){
-        return new MenuBebidas(itens, "Menu de Bebidas");
-    }
-
-    @Override
-    public Menu editarMenu(Menu MenuBebidas, String nome) {
-        MenuBebidas.setNome(nome);
-        return this;
+    public Menu editarMenu(Menu menu, String nome) {
+        menu.setNome(nome);
+        return menu;
     }
 
     @Override
     public Menu deletarMenu(Menu menu, ArrayList<Item> itens) {
-        menu.getItens().clear();
-        return this;
+        itens.clear();
+        return menu;
     }
 
     @Override
     public void exibirMenu() {
-        for(Item item : this.getItens()){
-            System.out.println(item);
+        System.out.println("------ " + nome + " ------");
+        for (Item item : itens) {
+            System.out.println(item.toString());
+            System.out.println("-----------------------------");
         }
     }
-
 }

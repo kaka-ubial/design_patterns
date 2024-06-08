@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-public abstract class Menu {
-	//atributos
-	protected ArrayList<Item> itens;
 
+public abstract class Menu {
+	protected ArrayList<Item> itens;
 	protected String nome;
 
 	public Menu(ArrayList<Item> itens, String nome) {
@@ -27,11 +26,10 @@ public abstract class Menu {
 	}
 
 	public abstract Menu criarMenu(ArrayList<Item> itens);
-
 	public abstract Menu editarMenu(Menu menu, String nome);
-
 	public abstract Menu deletarMenu(Menu menu, ArrayList<Item> itens);
-
+	public abstract void adicionarItem(Item item);
+	public abstract void editarItem(String nomeBebida, Item item);
+	public abstract void deletarItem(String nomeBebida);
 	public abstract void exibirMenu();
-
 }

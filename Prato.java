@@ -1,22 +1,17 @@
 import java.util.ArrayList;
+import java.text.DecimalFormat;
+
 
 public class Prato extends Item {
-
 	private boolean vegano;
-
 	private boolean gluten;
-
 	private boolean lactose;
-
-	private ArrayList<Prato> catalogoPrato = new ArrayList<>();
-
 
 	public Prato(String nomeItem, double precoItem, String descricaoItem, boolean vegano, boolean gluten, boolean lactose) {
 		super(nomeItem, precoItem, descricaoItem);
 		this.vegano = vegano;
 		this.gluten = gluten;
 		this.lactose = lactose;
-		catalogoPrato.add(this);
 	}
 
 	public boolean isVegano() {
@@ -42,36 +37,49 @@ public class Prato extends Item {
 	public void setLactose(boolean lactose) {
 		this.lactose = lactose;
 	}
+	public static void adicionarPrato(ArrayList<Item> listaPratos, Prato novoPrato) {
+		listaPratos.add(novoPrato);
+		System.out.println("Prato adicionado com sucesso!");
+	}
 
-	public void editarItem(Item item) {
-		if (item instanceof Prato) {
-				Prato prato = (Prato) item;
-				for (int i = 0; i < catalogoPrato.size(); i++) {
-						if (catalogoPrato.get(i).getNomeItem().equals(prato.getNomeItem())) {
-								catalogoPrato.set(i, prato);
-								break;
-						}
-				}
+	public static void editarPrato(ArrayList<Item> listaPratos, Prato pratoExistente, Prato novoPrato) {
+		if (listaPratos.contains(pratoExistente)) {
+			int index = listaPratos.indexOf(pratoExistente);
+			listaPratos.set(index, novoPrato);
+			System.out.println("Prato editado com sucesso!");
+		} else {
+			System.out.println("Prato não encontrado na lista.");
 		}
 	}
 
-@Override
-	public void excluirItem(Item item) {
-			if (item instanceof Prato) {
-					Prato prato = (Prato) item;
-					for (int i = 0; i < catalogoPrato.size(); i++) {
-							if (catalogoPrato.get(i).getNomeItem().equals(prato.getNomeItem())) {
-									catalogoPrato.remove(i);
-									break;
-							}
-					}
-			}
+	public static void deletarPrato(ArrayList<Item> listaPratos, Prato pratoParaDeletar) {
+		if (listaPratos.contains(pratoParaDeletar)) {
+			listaPratos.remove(pratoParaDeletar);
+			System.out.println("Prato deletado com sucesso!");
+		} else {
+			System.out.println("Prato não encontrado na lista.");
+		}
 	}
-
 	@Override
-	public void listarItens(ArrayList<Item> itens) {
-		for(Item item : itens) {
-			System.out.println(item);
+	public String toString() {
+		DecimalFormat df = new DecimalFormat("#.00");
+		StringBuilder sb = new StringBuilder();
+		sb.append("Nome: ").append(getNomeItem())
+				.append("\nPreço: ").append(df.format(getPrecoItem()))
+				.append("\nDescrição: ").append(getDescricaoItem());
+
+		if (vegano) {
+			sb.append("\nVegano");
 		}
+		if (gluten) {
+			sb.append("\nContém Glúten");
+		}
+		if (lactose) {
+			sb.append("\nContém Lactose");
+		}
+
+		return sb.toString();
 	}
+
+
 }

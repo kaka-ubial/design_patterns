@@ -1,17 +1,18 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Reserva {
 	//atributos
-	private String dataReserva;
+	private Date dataReserva;
 
 	private Mesa mesa;
 
 	private Cliente cliente;
 
-	private ArrayList<Reserva> listaReservas = new ArrayList<>();
+	private static ArrayList<Reserva> listaReservas = new ArrayList<>();
 
 	//construtor que adiciona a reserva na lista logo depois do objeto ser instanciado
-	public Reserva(String dataReserva, Mesa mesa, Cliente cliente) {
+	public Reserva(Date dataReserva, Mesa mesa, Cliente cliente) {
 		this.dataReserva = dataReserva;
 		this.mesa = mesa;
 		this.cliente = cliente;
@@ -19,11 +20,11 @@ public class Reserva {
 	}
 
 	//getters e setters
-	public String getDataReserva() {
+	public Date getDataReserva() {
 		return dataReserva;
 	}
 
-	public void setDataReserva(String dataReserva) {
+	public void setDataReserva(Date dataReserva) {
 		this.dataReserva = dataReserva;
 	}
 
@@ -44,12 +45,17 @@ public class Reserva {
 	}
 
 	public ArrayList<Reserva> getListaReservas() {
+		if (listaReservas.isEmpty()) {
+			System.out.println("Lista de reservas está vazia.");
+		}
 		return listaReservas;
 	}
+
 
 	public void setListaReservas(ArrayList<Reserva> listaReservas) {
 		this.listaReservas = listaReservas;
 	}
+
 
 	//métodos
 	//método para cancelar uma reserva, remove ela da lista e muda o estado da mesa para reservada =  false
@@ -66,8 +72,9 @@ public class Reserva {
 		reserva.setMesa(mesa);
 	}
 
+
 	//método para visualizar todas as reservas na lista de reservas
-	public void visualizarReservas(ArrayList<Reserva> listaReservas) {
+	public static void visualizarReservas() {
 		if (listaReservas.isEmpty()){
 			System.out.println("Nenhuma reserva encontrada.");
 		}

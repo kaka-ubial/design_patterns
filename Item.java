@@ -1,12 +1,7 @@
-import java.util.ArrayList;
-
-abstract public class Item {
-	//atributos
-	protected String nomeItem;
-
-	protected double precoItem;
-
-	protected String descricaoItem;
+public abstract class Item {
+	private String nomeItem;
+	private double precoItem;
+	private String descricaoItem;
 
 	public Item(String nomeItem, double precoItem, String descricaoItem) {
 		this.nomeItem = nomeItem;
@@ -38,10 +33,10 @@ abstract public class Item {
 		this.descricaoItem = descricaoItem;
 	}
 
-	public abstract void editarItem(Item item);
-
-	public abstract void excluirItem(Item item);
-
-	public abstract void listarItens(ArrayList<Item> itens);
-
+	@Override
+	public String toString() {
+		return "Nome: " + nomeItem +
+				"\nPreço: " + precoItem +
+				"\nDescrição: " + descricaoItem;
+	}
 }

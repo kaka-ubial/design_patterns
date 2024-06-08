@@ -4,24 +4,39 @@ public class Cliente extends Usuario {
 	//atributos
 	private String telefone;
 
-	private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+	private static ArrayList<Cliente> listaClientes = new ArrayList<>();
 
 	//construtor que ja adiciona o usuário na lista de usuarios
 	public Cliente(String nome, String telefone) {
 		super(nome);
 		this.telefone = telefone;
-		listaUsuarios.add(this);
+		listaClientes.add(this);
 	}
 
-	//getters e setters
-	public String getTelefone() {
-		return telefone;
+	public static void inicializarClientes() {
+		new Cliente("João", "123456789");
+		new Cliente("Maria", "987654321");
+		new Cliente("Carlos", "555555555");
+		new Cliente("Ana", "111222333");
+		new Cliente("Pedro", "444555666");
 	}
 
-	public void setTelefone(String telefone) {
+	public static Cliente encontrarCliente(String nomeCliente) {
+		for (Cliente cliente : listaClientes) {
+			if (cliente.getNome().equalsIgnoreCase(nomeCliente)) {
+				return cliente; // Retorna o cliente encontrado
+			}
+		}
+		return null; // Retorna null se o cliente não for encontrado
+	}
+
+    public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
+	public String getTelefone() {
+		return telefone;
+	}
 	//métodos
 
 	//método para excluir usuários da lista
