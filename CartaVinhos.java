@@ -5,67 +5,48 @@ public class CartaVinhos extends Menu {
         super(itens, nome);
     }
 
-    // Método para adicionar um vinho à carta de vinhos
     @Override
-    public void adicionarItem(Item item) {
-        if (item instanceof Vinho) {
-            this.itens.add(item);
-            System.out.println("Vinho adicionado com sucesso!");
-        } else {
-            System.out.println("O item não é um vinho e não pode ser adicionado à carta de vinhos.");
-        }
+    public ArrayList<Item> getItens() {
+        return super.getItens();
     }
 
-    // Método para editar um vinho na carta de vinhos
     @Override
-    public void editarItem(String nomeVinho, Item novoItem) {
-        for (Item item : this.itens) {
-            if (item instanceof Vinho && item.getNomeItem().equalsIgnoreCase(nomeVinho)) {
-                int index = this.itens.indexOf(item);
-                this.itens.set(index, novoItem);
-                System.out.println("Vinho editado com sucesso!");
-                return;
-            }
-        }
-        System.out.println("Vinho não encontrado na carta de vinhos.");
+    public void setItens(ArrayList<Item> itens) {
+        super.setItens(itens);
     }
 
-    // Método para deletar um vinho da carta de vinhos
     @Override
-    public void deletarItem(String nomeVinho) {
-        for (Item item : this.itens) {
-            if (item instanceof Vinho && item.getNomeItem().equalsIgnoreCase(nomeVinho)) {
-                this.itens.remove(item);
-                System.out.println("Vinho deletado com sucesso!");
-                return;
-            }
-        }
-        System.out.println("Vinho não encontrado na carta de vinhos.");
+    public String getNome() {
+        return super.getNome();
+    }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
     }
 
     @Override
     public Menu criarMenu(ArrayList<Item> itens) {
-        return new CartaVinhos(itens, this.nome);
+        return new CartaVinhos(itens, "Carta de Vinhos");
     }
 
+
     @Override
-    public Menu editarMenu(Menu menu, String nome) {
-        menu.setNome(nome);
-        return menu;
-    }
+    public Menu editarMenu(Menu CartaVinhos, String nome) {
+        CartaVinhos.setNome(nome);
+        return this;
+}
 
     @Override
     public Menu deletarMenu(Menu menu, ArrayList<Item> itens) {
-        itens.clear();
-        return menu;
+        menu.getItens().clear();
+        return this;
     }
 
     @Override
     public void exibirMenu() {
-        System.out.println("------ " + nome + " ------");
-        for (Item item : itens) {
-            System.out.println(item.toString());
-            System.out.println("-----------------------------");
+        for(Item item : this.getItens()){
+            System.out.println(item);
         }
     }
 }

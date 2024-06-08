@@ -1,7 +1,7 @@
 # Sistema de Gerenciamento de Restaurantes 🧑‍🍳
 
 ## Descrição 🗒️
-- O Sistema de Gerenciamento de Restaurantes é uma aplicação Java desenvolvida para facilitar o gerenciamento de restaurantes, permitindo que garçons criem e fechem comandas, clientes adicionem itens às comandas, e garçons também possam reservar mesas. Além disso, o sistema oferece acesso ao menu do restaurante, que inclui opções de comida, bebida e uma carta de vinhos.
+- O Sistema de Gerenciamento de Restaurantes é uma aplicação Java desenvolvida para facilitar o gerenciamento de restaurantes, permitindo que garçons criem e fechem comandas e também possam reservar mesas. Além disso, o sistema oferece acesso ao menu do restaurante, que inclui opções de comida, bebida e uma carta de vinhos.
 
 ## Funcionalidades ⚙️
 - Gestão de Comandas: Garçons podem criar, atualizar e fechar comandas. Clientes podem adicionar itens às comandas existentes.

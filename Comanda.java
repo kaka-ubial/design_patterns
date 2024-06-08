@@ -1,17 +1,15 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Comanda {
 	//atributos
 	private static int proximoId = 1;
-
 	private int idComanda;
 	private ArrayList<Item> itensComanda = new ArrayList<>();
-
-	private  ArrayList<Comanda> listaComandas = new ArrayList<>();
+	private ArrayList<Comanda> listaComandas = new ArrayList<>();
 	private double precoTotal;
-
 	private boolean pago;
-
 	private Mesa mesa;
 
 	//construtor
@@ -24,7 +22,7 @@ public class Comanda {
 		listaComandas.add(this);
 	}
 
-	//getters e setters
+	// getters e setters
 	public int getIdComanda() {
 		return idComanda;
 	}
@@ -65,16 +63,29 @@ public class Comanda {
 		this.pago = pago;
 	}
 
+	public Mesa getMesa() {
+		return mesa;
+	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
 	//métodos
 	//método para adicionar item à comanda
 	public void adicionarItem(Item item) {
 		itensComanda.add(item);
 		precoTotal += item.getPrecoItem();
 	}
-	//método para remover item da comanda
-	public void removerItem(Item item) {
-		itensComanda.remove(item);
-		precoTotal -= item.getPrecoItem();
+
+	// método para remover item da comanda
+	public void removerItem(Item item) throws ItemNaoEncontradoException {
+		if (itensComanda.contains(item)) {
+			itensComanda.remove(item);
+			precoTotal -= item.getPrecoItem();
+		} else {
+			throw new ItemNaoEncontradoException("Item não encontrado na comanda.");
+		}
 	}
 
 	//método para calcular preço final da comanda
@@ -87,7 +98,7 @@ public class Comanda {
 	}
 
 	//método para exibir detalhes da comanda
-	public void exibirComandaEspecifica() {
+	public void exibirComandaEspecifica(Comanda comanda) {
 		System.out.println("Comanda #" + idComanda);
 		System.out.println("Mesa:" + mesa.getNumero());
 		for (Item item : itensComanda) {
@@ -97,7 +108,7 @@ public class Comanda {
 	}
 
 	//método para exibir a lista de comandas:
-	public void exibirListaComandas(ArrayList listaComandas) {
+	public void exibirListaComandas(ArrayList<Comanda> listaComandas) {
 		if (listaComandas.isEmpty()){
 			System.out.println("Nenhuma comanda encontrada.");
 		}
@@ -109,6 +120,17 @@ public class Comanda {
 	//método para mudar o estado da comanda para paga
 	public void confirmarPagamentoComanda(){
 		pago = true;
-		System.out.println("A comanda " + idComanda + "foi paga");
+		System.out.println("A comanda " + idComanda + " foi paga");
+	}
+
+	public void salvarComandasEmArquivo() {
+		try (FileWriter escritor = new FileWriter("comandas.txt")) {
+			for (Comanda comanda : listaComandas) {
+				escritor.write("Comanda #" + comanda.getIdComanda() + ", Mesa: " + comanda.getMesa().getNumero() + ", Total: R$" + comanda.getPrecoTotal() + ", Pago: " + comanda.isPago() + "\n");
+			}
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao salvar as comandas.");
+			e.printStackTrace();
+		}
 	}
 }

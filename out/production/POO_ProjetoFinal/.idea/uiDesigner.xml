@@ -100,7 +100,7 @@
         <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
       </item>
       <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.svg" removable="false" auto-create-binding="true" can-attach-label="true">
-        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
+        <default-constraints vsize-policy="6" hsize-policy="0" anchor="8" fill="2" />
       </item>
       <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.svg" removable="false" auto-create-binding="true" can-attach-label="false">
         <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
