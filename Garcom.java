@@ -89,7 +89,7 @@ public class Garcom extends Usuario {
 				}
 			}
 		} catch (IOException e) {
-			System.out.println("Ocorreu um erro ao salvar os clientes.");
+			System.out.println("Ocorreu um erro ao salvar os dados do garçom.");
 			e.printStackTrace();
 		}
 	}

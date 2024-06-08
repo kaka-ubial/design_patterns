@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-
+import java.io.FileWriter;
+import java.io.IOException;
 public class MenuComidas extends Menu {
     public MenuComidas(ArrayList<Item> itens, String nome) {
         super(itens, nome);
@@ -63,6 +64,25 @@ public class MenuComidas extends Menu {
         for (Item item : itens) {
             System.out.println(item.toString());
             System.out.println("-----------------------------");
+        }
+    }
+
+    public void salvarMenuComidasEmArquivo() {
+        try (FileWriter escritor = new FileWriter("menu_comidas.txt")) {
+            for (Item item : this.getItens()) {
+                if (item instanceof Prato) {
+                    Prato prato = (Prato) item;
+                    escritor.write("Nome: " + prato.getNomeItem() + "\n");
+                    escritor.write("Preço: " + prato.getPrecoItem() + "\n");
+                    escritor.write("Descrição: " + prato.getDescricaoItem() + "\n");
+                    escritor.write("Vegano: " + prato.isVegano() + "\n");
+                    escritor.write("Contém glúten: " + prato.isGluten() + "\n");
+                    escritor.write("Contém lactose: " + prato.isLactose() + "\n\n");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Ocorreu um erro ao salvar o menu de comidas.");
+            e.printStackTrace();
         }
     }
 }

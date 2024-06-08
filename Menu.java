@@ -31,5 +31,10 @@ public abstract class Menu {
 	public abstract void adicionarItem(Item item);
 	public abstract void editarItem(String nomeBebida, Item item);
 	public abstract void deletarItem(String nomeBebida);
-	public abstract void exibirMenu();
+	public void exibirMenu(){
+		System.out.println("Menu de Bebidas: ");
+		for(Item item : this.getItens()){
+			System.out.println(item);
+		}
+	}
 }

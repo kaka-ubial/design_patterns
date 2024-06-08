@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public abstract class Usuario {
  	//atributos
 	protected String nome;
@@ -20,10 +21,20 @@ public abstract class Usuario {
 
 	//métodos
 	//método para excluir usuários da lista
-	public abstract void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) throws UsuarioNaoEncontradoException;
+	public void excluirUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) throws UsuarioNaoEncontradoException {
+		if (!listaUsuarios.remove(usuario)) {
+			throw new UsuarioNaoEncontradoException("Usuário não encontrado.");
+		}
+	}
 
-	//método para editar um usuário da lista
-	public abstract void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) throws UsuarioNaoEncontradoException;
-
-
+	// Método para editar um usuário da lista
+	public void editarUsuario(Usuario usuario, ArrayList<Usuario> listaUsuarios) throws UsuarioNaoEncontradoException {
+		int index = listaUsuarios.indexOf(usuario);
+		if (index != -1) {
+			listaUsuarios.set(index, usuario);
+		} else {
+			throw new UsuarioNaoEncontradoException("Usuário não encontrado.");
+		}
+	}
 }
+

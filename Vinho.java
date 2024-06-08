@@ -18,6 +18,54 @@ public class Vinho extends Item {
 		this.teorAlcoolico = teorAlcoolico;
 	}
 
+	public int getIdadeVinho() {
+		return idadeVinho;
+	}
+
+	public void setIdadeVinho(int idadeVinho) {
+		this.idadeVinho = idadeVinho;
+	}
+
+	public String getNacionalidade() {
+		return nacionalidade;
+	}
+
+	public void setNacionalidade(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getUva() {
+		return uva;
+	}
+
+	public void setUva(String uva) {
+		this.uva = uva;
+	}
+
+	public String getCorpo() {
+		return corpo;
+	}
+
+	public void setCorpo(String corpo) {
+		this.corpo = corpo;
+	}
+
+	public String getTeorAlcoolico() {
+		return teorAlcoolico;
+	}
+
+	public void setTeorAlcoolico(String teorAlcoolico) {
+		this.teorAlcoolico = teorAlcoolico;
+	}
+
 	// Getters e Setters omitidos para brevidade
 
 	@Override

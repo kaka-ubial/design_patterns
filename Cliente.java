@@ -1,27 +1,48 @@
 import java.util.ArrayList;
-
+import java.io.FileWriter;
+import java.io.IOException;
+class ClienteNaoEncontradoException extends Exception {
+	public ClienteNaoEncontradoException(String mensagem) {
+		super(mensagem);
+	}
+}
 public class Cliente extends Usuario {
 	//atributos
 	private String telefone;
 
-	private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+	private static ArrayList<Cliente> listaClientes = new ArrayList<>();
 
 	//construtor que ja adiciona o usuário na lista de usuarios
 	public Cliente(String nome, String telefone) {
 		super(nome);
 		this.telefone = telefone;
-		listaUsuarios.add(this);
+		listaClientes.add(this);
 	}
 
-	//getters e setters
-	public String getTelefone() {
-		return telefone;
+	public static void inicializarClientes() {
+		new Cliente("João", "123456789");
+		new Cliente("Maria", "987654321");
+		new Cliente("Carlos", "555555555");
+		new Cliente("Ana", "111222333");
+		new Cliente("Pedro", "444555666");
 	}
 
-	public void setTelefone(String telefone) {
+	public static Cliente encontrarCliente(String nomeCliente) throws ClienteNaoEncontradoException {
+		for (Cliente cliente : listaClientes) {
+			if (cliente.getNome().equalsIgnoreCase(nomeCliente)) {
+				return cliente; // Retorna o cliente encontrado
+			}
+		}
+		throw new ClienteNaoEncontradoException("Cliente não encontrado: " + nomeCliente);
+	}
+
+    public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
+	public String getTelefone() {
+		return telefone;
+	}
 	//métodos
 
 	//método para excluir usuários da lista
@@ -46,6 +67,21 @@ public class Cliente extends Usuario {
 		}
 	}
 
-}
+	public void salvarClienteEmArquivo() {
+		try (FileWriter escritor = new FileWriter("clientes.txt")) {
+			for (Usuario usuario : listaClientes) {
+				if (usuario instanceof Cliente) {
+					Cliente cliente = (Cliente) usuario;
+					escritor.write("Cliente: " + cliente.getNome() + ", Telefone: " + cliente.getTelefone() + "\n");
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao salvar os clientes.");
+			e.printStackTrace();
+		}
+	}
+		}
+
+
 
 

@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class MenuBebidas extends Menu {
     public MenuBebidas(ArrayList<Item> itens, String nome) {
@@ -66,6 +68,23 @@ public class MenuBebidas extends Menu {
         for (Item item : itens) {
             System.out.println(item.toString());
             System.out.println("-----------------------------");
+        }
+    }
+
+    public void salvarBebidasEmArquivo() {
+        try (FileWriter escritor = new FileWriter("bebidas.txt")) {
+            for (Item item : this.getItens()) {
+                if (item instanceof Bebida) {
+                    Bebida bebida = (Bebida) item;
+                    escritor.write("Nome: " + bebida.getNomeItem() + "\n");
+                    escritor.write("Preço: " + bebida.getPrecoItem() + "\n");
+                    escritor.write("Descrição: " + bebida.getDescricaoItem() + "\n");
+                    escritor.write("Alcoólica: " + bebida.isAlcoolica() + "\n\n");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Ocorreu um erro ao salvar as bebidas.");
+            e.printStackTrace();
         }
     }
 }

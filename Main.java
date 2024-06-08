@@ -428,15 +428,20 @@ public class Main {
                                         System.out.print("Digite o nome do cliente: ");
                                         String nomeCliente = scanner.nextLine();
 
-                                        Cliente clienteReserva = Cliente.encontrarCliente(nomeCliente);
+                                        Cliente clienteReserva = null;  // Declare a variável clienteReserva antes do bloco try-catch
 
-                                        if (clienteReserva == null) {
-                                            System.out.println("Cliente não encontrado. A reserva não será criada.");
-                                            return;
+                                        try {
+                                            clienteReserva = Cliente.encontrarCliente(nomeCliente);
+                                            System.out.println("Cliente encontrado: " + clienteReserva.getNome() + ", Telefone: " + clienteReserva.getTelefone());
+
+                                            // Criar a reserva aqui, pois só deve ser feita se o cliente for encontrado
+                                            Reserva reserva = new Reserva(dataReserva, mesa, clienteReserva);
+                                            System.out.println("Reserva criada com sucesso!");
+
+                                        } catch (ClienteNaoEncontradoException e) {
+                                            System.out.println(e.getMessage());
+                                            // Não cria a reserva se o cliente não for encontrado
                                         }
-
-                                        Reserva reserva = new Reserva(dataReserva, mesa, clienteReserva);
-                                        System.out.println("Reserva criada com sucesso!");
 
 
                                         break;
