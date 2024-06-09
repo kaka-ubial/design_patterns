@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
-class ClienteNaoEncontradoException extends Exception {
-	public ClienteNaoEncontradoException(String mensagem) {
-		super(mensagem);
-	}
-}
 public class Cliente extends Usuario {
 	//atributos
 	private String telefone;

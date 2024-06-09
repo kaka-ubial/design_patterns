@@ -53,9 +53,14 @@ public class Mesa {
 		}
 	}
 
-	public static void adicionarMesa(int numero, int numLugares, boolean reservado) {
+	public static void adicionarMesa(int numero, int numLugares, boolean reservado) throws MesaException {
+		if (numero <= 0 || numLugares <= 0) {
+			throw new MesaException("Número e número de lugares da mesa devem ser maiores que zero.");
+		}
 		Mesa novaMesa = new Mesa(numero, numLugares, reservado);
+		System.out.println("Mesa criada com sucesso!");
 	}
+
 
 	public static void exibirTodasMesas() {
 		for (Mesa mesa : listaMesas) {

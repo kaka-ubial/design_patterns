@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 public class Reserva {
 	//atributos
@@ -9,14 +11,14 @@ public class Reserva {
 
 	private Cliente cliente;
 
-	private static ArrayList<Reserva> listaReservas = new ArrayList<>();
 
 	//construtor que adiciona a reserva na lista logo depois do objeto ser instanciado
-	public Reserva(Date dataReserva, Mesa mesa, Cliente cliente) {
+	public Reserva(Date dataReserva, Mesa mesa, Cliente cliente, ArrayList<Reserva> listaReservas) {
 		this.dataReserva = dataReserva;
 		this.mesa = mesa;
 		this.cliente = cliente;
 		listaReservas.add(this);
+		mesa.setReservado(true);
 	}
 
 	//getters e setters
@@ -44,26 +46,58 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 
-	public ArrayList<Reserva> getListaReservas() {
-		if (listaReservas.isEmpty()) {
-			System.out.println("Lista de reservas está vazia.");
+
+	public static void inicializarReservas(ArrayList<Reserva> listaReservas) {
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date data1 = dateFormat.parse("21/12/2024");
+			Date data2 = dateFormat.parse("22/12/2024");
+			Date data3 = dateFormat.parse("23/12/2024");
+
+			Mesa mesa1 = Mesa.encontrarMesa(1);
+			Mesa mesa4 = Mesa.encontrarMesa(4);
+			Mesa mesa7 = Mesa.encontrarMesa(7);
+
+			Cliente clienteJoao = Cliente.encontrarCliente("João");
+			Cliente clienteCarlos = Cliente.encontrarCliente("Carlos");
+			Cliente clienteAna = Cliente.encontrarCliente("Ana");
+
+			new Reserva(data1, mesa1, clienteJoao, listaReservas);
+			new Reserva(data2, mesa4, clienteCarlos, listaReservas);
+			new Reserva(data3, mesa7, clienteAna, listaReservas);
+		} catch (ParseException | ClienteNaoEncontradoException e) {
+			e.printStackTrace();
 		}
-		return listaReservas;
 	}
 
+	public static void cancelarReserva(ArrayList<Reserva> listaReservas, String dataReservaStr, String nomeCliente, int numMesa) {
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date dataReserva = dateFormat.parse(dataReservaStr);
 
-	public void setListaReservas(ArrayList<Reserva> listaReservas) {
-		this.listaReservas = listaReservas;
+			boolean reservaEncontrada = false;
+
+			for (Reserva reserva : listaReservas) {
+				if (reserva.getDataReserva().compareTo(dataReserva) == 0 &&
+						reserva.getMesa().getNumero() == numMesa &&
+						reserva.getCliente().getNome().equalsIgnoreCase(nomeCliente)) {
+					listaReservas.remove(reserva);
+					Mesa mesa = reserva.getMesa();
+					mesa.cancelarReservaMesa(mesa);
+					System.out.println("Reserva cancelada com sucesso.");
+					reservaEncontrada = true;
+					break;
+				}
+			}
+
+			if (!reservaEncontrada) {
+				System.out.println("Reserva não encontrada.");
+			}
+		} catch (ParseException e) {
+			System.out.println("Formato de data inválido.");
+		}
 	}
 
-
-	//métodos
-	//método para cancelar uma reserva, remove ela da lista e muda o estado da mesa para reservada =  false
-	public void cancelarReserva(Reserva reserva) {
-		listaReservas.remove(reserva);
-		Mesa mesa = reserva.getMesa();
-		mesa.cancelarReservaMesa(mesa);
-	}
 
 	//método para editar uma reserva
 	public void editarReserva(Reserva reserva) {
@@ -74,17 +108,19 @@ public class Reserva {
 
 
 	//método para visualizar todas as reservas na lista de reservas
-	public static void visualizarReservas() {
-		if (listaReservas.isEmpty()){
+	public static void visualizarReservas(ArrayList<Reserva> listaReservas) {
+		if (listaReservas.isEmpty()) {
 			System.out.println("Nenhuma reserva encontrada.");
-		}
-		else{
+		} else {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			for (Reserva reserva : listaReservas) {
-				System.out.println("Data da Reserva: " + reserva.getDataReserva());
-				System.out.println("Mesa: " + reserva.getMesa());
-				System.out.println("Cliente: " + reserva.getCliente());
+				String dataFormatada = dateFormat.format(reserva.getDataReserva());
+				System.out.println("Data da Reserva: " + dataFormatada);
+				System.out.println("Mesa: " + reserva.getMesa().getNumero());
+				System.out.println("Cliente: " + reserva.getCliente().getNome());
 				System.out.println("----------------------------------");
-			}}
+			}
+		}
 	}
 
 

@@ -51,18 +51,144 @@ public class Main {
     }
 
     public static String menuMesasGarcom(Scanner scanner) {
-        System.out.println("O que deseja fazer?");
         System.out.println("O que deseja fazer?\n1 - Adicionar mesa\n2 - Editar mesa\n3 - Excluir mesa\n4 - Listar mesas");
         String opcaoMesas = scanner.nextLine();
         return opcaoMesas;
     }
 
-    public static String menuReservasGarcom(Scanner scanner){
+    public static String menuReservasGarcom(Scanner scanner) {
         System.out.println("O que você deseja fazer?\n1 - Adicionar reserva\n2 - Editar reserva\n3 - Excluir reserva\n4 - Listar reservas");
         String opcaoReservas = scanner.nextLine();
         return opcaoReservas;
     }
 
+    public static Cliente newCliente(Scanner scanner) {
+        System.out.println("Qual seu nome?");
+        String nome = scanner.nextLine();
+        String telefone;
+        do {
+            System.out.println("Qual seu telefone? (Formato: (XX) XXXXX-XXXX)");
+            telefone = scanner.nextLine();
+        } while (!validarTelefone(telefone));
+
+        return new Cliente(nome, telefone);
+    }
+
+    //Funções Garçom
+    public static Garcom loginGarcom(Scanner scanner) {
+        System.out.println("Qual seu nome?");
+        String nomeGarcom = scanner.nextLine();
+        System.out.println("Qual seu turno?");
+        String turnoGarcom = scanner.nextLine();
+        String emailGarcom = "";
+        boolean emailValido = false;
+        while (!emailValido) {
+            System.out.println("Qual seu email?");
+            emailGarcom = scanner.nextLine();
+            if (isValidEmail(emailGarcom)) {
+                emailValido = true;
+            } else {
+                System.out.println("Email inválido. Por favor, insira um email válido.");
+            }
+        }
+        System.out.println("Qual sua senha?");
+        String senhaGarcom = scanner.nextLine();
+        return new Garcom(nomeGarcom, turnoGarcom, lastGarcomId, emailGarcom, senhaGarcom);
+
+    }
+
+    public static Prato garcomAdicionarPrato(Scanner scanner) {
+
+        System.out.println("Digite o nome do novo prato:");
+        String nomePrato = scanner.nextLine();
+        double precoPrato = obterPrecoItem(scanner);
+        System.out.println("Digite a descrição do novo prato:");
+        String descricaoPrato = scanner.nextLine();
+        System.out.println("O prato é vegano? (S/N)");
+        boolean vegano = scanner.nextLine().equalsIgnoreCase("S");
+        System.out.println("O prato contém glúten? (S/N)");
+        boolean gluten = scanner.nextLine().equalsIgnoreCase("S");
+        System.out.println("O prato contém lactose? (S/N)");
+        boolean lactose = scanner.nextLine().equalsIgnoreCase("S");
+        return new Prato(nomePrato, precoPrato, descricaoPrato, vegano, gluten, lactose);
+
+    }
+
+    public static Prato garcomEditarPrato(String nomePratoEditar, Scanner scanner, ArrayList<Item> pratos) {
+        Prato pratoExistente = null;
+        for (Item item : pratos) {
+            if (item instanceof Prato && item.getNomeItem().equalsIgnoreCase(nomePratoEditar)) {
+                pratoExistente = (Prato) item;
+                break;
+            }
+        }
+        if (pratoExistente != null) {
+            System.out.println("Digite o novo nome do prato:");
+            String novoNomePrato = scanner.nextLine();
+            double precoPratoNovo = obterPrecoItem(scanner);
+
+            System.out.println("Digite a nova descrição do prato:");
+            String novaDescricaoPrato = scanner.nextLine();
+            System.out.println("O prato é vegano? (S/N)");
+            boolean novoVegano = scanner.nextLine().equalsIgnoreCase("S");
+            System.out.println("O prato contém glúten? (S/N)");
+            boolean novoGluten = scanner.nextLine().equalsIgnoreCase("S");
+            System.out.println("O prato contém lactose? (S/N)");
+            boolean novaLactose = scanner.nextLine().equalsIgnoreCase("S");
+
+            return new Prato(novoNomePrato, precoPratoNovo, novaDescricaoPrato, novoVegano, novoGluten, novaLactose);
+        } else {
+            System.out.println("Prato não encontrado");
+            return null;
+        }
+    }
+
+    public static String garcomDeletarPrato(Scanner scanner){
+        System.out.println("Digite o nome do prato que deseja deletar:");
+        String nomePratoDeletar = scanner.nextLine();
+        return nomePratoDeletar;
+    }
+
+    public static Bebida garcomAdicionarBebida(Scanner scanner){
+        System.out.println("Digite o nome da nova bebida:");
+        String nomeBebida = scanner.nextLine();
+        double precoBebida = obterPrecoItem(scanner);
+        System.out.println("Digite a descrição da nova bebida:");
+        String descricaoBebida = scanner.nextLine();
+        System.out.println("A bebida é alcoólica? (S/N)");
+        boolean alcoolica = scanner.nextLine().equalsIgnoreCase("S");
+        return new Bebida(nomeBebida, precoBebida, descricaoBebida, alcoolica);
+    }
+
+    public static Bebida garcomEditarBebida (String nomeBebidaEditar, Scanner scanner, ArrayList<Item> bebidas){
+        Bebida bebidaExistente = null;
+        for (Item item : bebidas) {
+            if (item instanceof Bebida && item.getNomeItem().equalsIgnoreCase(nomeBebidaEditar)) {
+                bebidaExistente = (Bebida) item;
+                break;
+            }
+        }
+        if (bebidaExistente != null) {
+            System.out.println("Digite o novo nome da bebida:");
+            String novoNomeBebida = scanner.nextLine();
+            double precoBebidaNova = obterPrecoItem(scanner);
+            System.out.println("Digite a nova descrição da bebida:");
+            String novaDescricaoBebida = scanner.nextLine();
+            System.out.println("A bebida é alcoólica? (S/N)");
+            boolean novaAlcoolica = scanner.nextLine().equalsIgnoreCase("S");
+
+            return new Bebida(novoNomeBebida, precoBebidaNova, novaDescricaoBebida, novaAlcoolica);
+        } else {
+            System.out.println("Bebida não encontrada.");
+            return null;
+        }
+    }
+
+    public static String garcomDeletarBebida (Scanner scanner){
+        System.out.println("Digite o nome da bebida que deseja deletar:");
+        String nomeBebidaDeletar = scanner.nextLine();
+        return nomeBebidaDeletar;
+    }
     public static double obterPrecoItem(Scanner scanner) {
         String precoItemStr;
         while (true) {
@@ -82,6 +208,230 @@ public class Main {
         return Double.parseDouble(precoItemStr);
     }
 
+    public static Vinho garcomAdicionarVinho(Scanner scanner){
+        System.out.println("Digite o nome do novo vinho:");
+        String nomeVinho = scanner.nextLine();
+        double precoVinho = obterPrecoItem(scanner);
+        System.out.println("Digite a descrição do novo vinho:");
+        String descricaoVinho = scanner.nextLine();
+        System.out.println("Digite a idade do vinho:");
+        int idadeVinho = Integer.parseInt(scanner.nextLine());
+        System.out.println("Digite a nacionalidade do vinho:");
+        String nacionalidadeVinho = scanner.nextLine();
+        System.out.println("Digite o tipo do vinho:");
+        String tipoVinho = scanner.nextLine();
+        System.out.println("Digite a uva do vinho:");
+        String uvaVinho = scanner.nextLine();
+        System.out.println("Digite o corpo do vinho:");
+        String corpoVinho = scanner.nextLine();
+        System.out.println("Digite o teor alcoólico do vinho:");
+        String teorAlcoolicoVinho = scanner.nextLine();
+
+        return new Vinho(nomeVinho, precoVinho, descricaoVinho, idadeVinho, nacionalidadeVinho, tipoVinho, uvaVinho, corpoVinho, teorAlcoolicoVinho);
+    }
+
+    public static Vinho garcomEditarVinho(String nomeVinhoEditar, Scanner scanner, ArrayList<Item> vinhos){
+        Vinho vinhoExistente = null;
+        for (Item item : vinhos) {
+            if (item instanceof Vinho && item.getNomeItem().equalsIgnoreCase(nomeVinhoEditar)) {
+                vinhoExistente = (Vinho) item;
+                break;
+            }
+        }
+        if (vinhoExistente != null) {
+            System.out.println("Digite o novo nome do vinho:");
+            String novoNomeVinho = scanner.nextLine();
+            double precoVinhoNovo = obterPrecoItem(scanner);
+            System.out.println("Digite a nova descrição do vinho:");
+            String novaDescricaoVinho = scanner.nextLine();
+            System.out.println("Digite a nova idade do vinho:");
+            int novaIdadeVinho = Integer.parseInt(scanner.nextLine());
+            System.out.println("Digite a nova nacionalidade do vinho:");
+            String novaNacionalidadeVinho = scanner.nextLine();
+            System.out.println("Digite o novo tipo do vinho:");
+            String novoTipoVinho = scanner.nextLine();
+            System.out.println("Digite a nova uva do vinho:");
+            String novaUvaVinho = scanner.nextLine();
+            System.out.println("Digite o novo corpo do vinho:");
+            String novoCorpoVinho = scanner.nextLine();
+            System.out.println("Digite o novo teor alcoólico do vinho:");
+            String novoTeorAlcoolicoVinho = scanner.nextLine();
+
+            return new Vinho(novoNomeVinho, precoVinhoNovo, novaDescricaoVinho, novaIdadeVinho, novaNacionalidadeVinho, novoTipoVinho, novaUvaVinho, novoCorpoVinho, novoTeorAlcoolicoVinho);
+        } else {
+            System.out.println("Vinho não encontrado.");
+            return null;
+        }
+    }
+
+    public static String garcomDeletarVinho(Scanner scanner){
+        System.out.println("Digite o nome do vinho que deseja deletar:");
+        String nomeVinhoDeletar = scanner.nextLine();
+        return nomeVinhoDeletar;
+    }
+    private static ArrayList<Reserva> listaReservas = new ArrayList<>();
+
+    public static Reserva garcomCriarReserva(Scanner scanner) {
+        System.out.println("Criando uma nova reserva:");
+
+        Date dataReserva = null;
+        while (dataReserva == null) {
+            System.out.print("Digite a data da reserva (dd/MM/yyyy): ");
+            String dataInput = scanner.nextLine();
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                dataReserva = dateFormat.parse(dataInput);
+            } catch (ParseException e) {
+                System.out.println("Formato de data inválido. Por favor, insira novamente.");
+            }
+        }
+
+        int numeroMesa = -1;
+        Mesa mesa = null;
+        while (mesa == null) {
+            System.out.print("Digite o número da mesa: ");
+            try {
+                numeroMesa = Integer.parseInt(scanner.nextLine());
+                mesa = Mesa.encontrarMesa(numeroMesa);
+                if (mesa == null) {
+                    System.out.println("Mesa não encontrada. Por favor, insira novamente.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Número da mesa inválido. Por favor, insira novamente.");
+            }
+        }
+
+        Cliente clienteReserva = null;
+        while (clienteReserva == null) {
+            System.out.print("Digite o nome do cliente: ");
+            String nomeCliente = scanner.nextLine();
+            try {
+                clienteReserva = Cliente.encontrarCliente(nomeCliente);
+                System.out.println("Cliente encontrado: " + clienteReserva.getNome() + ", Telefone: " + clienteReserva.getTelefone());
+            } catch (ClienteNaoEncontradoException e) {
+                System.out.println(e.getMessage() + " Por favor, insira novamente.");
+            }
+        }
+
+        return new Reserva(dataReserva, mesa, clienteReserva, listaReservas);
+    }
+
+    public static Reserva garcomEditarReserva(String reservaEditada, Scanner scanner, ArrayList<Reserva> listaReservas) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataReserva = null;
+        try {
+            dataReserva = dateFormat.parse(reservaEditada);
+        } catch (ParseException e) {
+            System.out.println("Formato de data inválido.");
+            return null;
+        }
+
+        Reserva reservaExistente = null;
+        for (Reserva reserva : listaReservas) {
+            if (reserva.getDataReserva().equals(dataReserva)) {
+                reservaExistente = reserva;
+                break;
+            }
+        }
+
+        if (reservaExistente != null) {
+            System.out.print("Digite a nova data da reserva (dd/MM/yyyy): ");
+            String novaDataInput = scanner.nextLine();
+            Date novaDataReserva = null;
+            while (novaDataReserva == null) {
+                try {
+                    novaDataReserva = dateFormat.parse(novaDataInput);
+                } catch (ParseException e) {
+                    System.out.print("Formato de data inválido. Digite novamente (dd/MM/yyyy): ");
+                    novaDataInput = scanner.nextLine();
+                }
+            }
+
+            System.out.print("Digite o novo número da mesa: ");
+            int novoNumeroMesa = Integer.parseInt(scanner.nextLine());
+            Mesa novaMesa = Mesa.encontrarMesa(novoNumeroMesa);
+            while (novaMesa == null) {
+                System.out.print("Mesa não encontrada. Digite novamente o número da mesa: ");
+                novoNumeroMesa = Integer.parseInt(scanner.nextLine());
+                novaMesa = Mesa.encontrarMesa(novoNumeroMesa);
+            }
+
+            System.out.print("Digite o novo nome do cliente: ");
+            String novoNomeCliente = scanner.nextLine();
+            Cliente novoCliente = null;
+            while (novoCliente == null) {
+                try {
+                    novoCliente = Cliente.encontrarCliente(novoNomeCliente);
+                } catch (ClienteNaoEncontradoException e) {
+                    System.out.print("Cliente não encontrado. Digite novamente o nome do cliente: ");
+                    novoNomeCliente = scanner.nextLine();
+                }
+            }
+
+            reservaExistente.setDataReserva(novaDataReserva);
+            reservaExistente.setMesa(novaMesa);
+            reservaExistente.setCliente(novoCliente);
+
+            System.out.println("Reserva editada com sucesso!");
+            return reservaExistente;
+        } else {
+            System.out.println("Reserva não encontrada.");
+            return null;
+        }
+    }
+
+    public static void garcomCriarMesa(Scanner scanner){
+        try {
+            System.out.println("Digite o número da nova mesa:");
+            int numeroMesa = Integer.parseInt(scanner.nextLine());
+            System.out.println("Digite o número de lugares da nova mesa:");
+            int numLugaresMesa = Integer.parseInt(scanner.nextLine());
+            Mesa.adicionarMesa(numeroMesa, numLugaresMesa, false);
+        } catch (NumberFormatException e) {
+            System.out.println("Número inválido. Certifique-se de inserir um número válido para a mesa.");
+        } catch (MesaException e) {
+            System.out.println("Erro ao adicionar mesa: " + e.getMessage());
+        }
+    }
+
+    public static void garcomEditarMesa(int numMesaEditar, Scanner scanner) {
+        Mesa mesaEditar = null;
+        for (Mesa mesa : Mesa.getListaMesas()) {
+            if (mesa.getNumero() == numMesaEditar) {
+                mesaEditar = mesa;
+                break;
+            }
+        }
+        if (mesaEditar != null) {
+            System.out.println("Digite o novo número de lugares:");
+            int novoNumLugares = Integer.parseInt(scanner.nextLine());
+            mesaEditar.setNumLugares(novoNumLugares);
+            System.out.println("Mesa editada com sucesso. Para alterar o estado da reserva, crie uma nova reserva.");
+        } else {
+            System.out.println("Mesa não encontrada.");
+        }
+
+    }
+
+    public static void garcomExcluirMesa(Scanner scanner){
+        System.out.println("Digite o número da mesa que deseja excluir:");
+        int numMesaExcluir = Integer.parseInt(scanner.nextLine());
+        Mesa mesaExcluir = null;
+        for (Mesa mesa : Mesa.getListaMesas()) {
+            if (mesa.getNumero() == numMesaExcluir) {
+                mesaExcluir = mesa;
+                break;
+            }
+        }
+        if (mesaExcluir != null) {
+            mesaExcluir.excluirMesa(mesaExcluir);
+            System.out.println("Mesa excluída com sucesso.");
+        } else {
+            System.out.println("Mesa não encontrada.");
+        }
+    }
+
+    //Validações
     public static boolean isValidEmail(String email) {
         String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(regex);
@@ -132,7 +482,7 @@ public class Main {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             try {
                 Date dataReserva = dateFormat.parse(dataReservaStr);
-                Reserva reserva = new Reserva(dataReserva, mesaSelecionada, cliente);
+                Reserva reserva = new Reserva(dataReserva, mesaSelecionada, cliente, listaReservas);
                 mesaSelecionada.setReservado(true);
                 System.out.println("Reserva realizada com sucesso para a mesa #" + mesaSelecionada.getNumero());
             } catch (ParseException e) {
@@ -147,6 +497,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Mesa.inicializarMesas();
         Cliente.inicializarClientes();
+        Reserva.inicializarReservas(listaReservas);
 
         // Gerar itens aleatórios
         ArrayList<Item> comidas = GeradorItens.gerarItensAleatorios("comida", 5);
@@ -161,15 +512,7 @@ public class Main {
 
         switch (menuPrincipal(scanner)) {
             case "1":
-                System.out.println("Qual seu nome?");
-                String nome = scanner.nextLine();
-                String telefone;
-                do {
-                    System.out.println("Qual seu telefone? (Formato: (XX) XXXXX-XXXX)");
-                    telefone = scanner.nextLine();
-                } while (!validarTelefone(telefone));
-
-                Cliente cliente = new Cliente(nome, telefone);
+                Cliente cliente = newCliente(scanner);
                 System.out.println("------------------------------------------");
                 System.out.println("Seja bem-vindo(a), " + cliente.getNome());
                 System.out.println("------------------------------------------");
@@ -205,24 +548,7 @@ public class Main {
                     }
                 }
             case "2":
-                System.out.println("Qual seu nome?");
-                String nomeGarcom = scanner.nextLine();
-                System.out.println("Qual seu turno?");
-                String turnoGarcom = scanner.nextLine();
-                String emailGarcom = "";
-                boolean emailValido = false;
-                while (!emailValido) {
-                    System.out.println("Qual seu email?");
-                    emailGarcom = scanner.nextLine();
-                    if (isValidEmail(emailGarcom)) {
-                        emailValido = true;
-                    } else {
-                        System.out.println("Email inválido. Por favor, insira um email válido.");
-                    }
-                }
-                System.out.println("Qual sua senha?");
-                String senhaGarcom = scanner.nextLine();
-                Garcom garcom = new Garcom(nomeGarcom, turnoGarcom, lastGarcomId, emailGarcom, senhaGarcom);
+                Garcom garcom = loginGarcom(scanner);
                 lastGarcomId++;
                 System.out.println("Bem-vindo, " + garcom.getNome());
                 switch (menuGarcom(scanner)) {
@@ -232,113 +558,40 @@ public class Main {
                         switch (menuGarcom) {
                             case "1":
                                 switch (menuPratosGarcom(scanner)) {
-                                            case "1":
-                                                System.out.println("Digite o nome do novo prato:");
-                                                String nomePrato = scanner.nextLine();
-                                                double precoPrato = obterPrecoItem(scanner);
-                                                System.out.println("Digite a descrição do novo prato:");
-                                                String descricaoPrato = scanner.nextLine();
-                                                System.out.println("O prato é vegano? (S/N)");
-                                                boolean vegano = scanner.nextLine().equalsIgnoreCase("S");
-                                                System.out.println("O prato contém glúten? (S/N)");
-                                                boolean gluten = scanner.nextLine().equalsIgnoreCase("S");
-                                                System.out.println("O prato contém lactose? (S/N)");
-                                                boolean lactose = scanner.nextLine().equalsIgnoreCase("S");
-
-                                                Prato novoPrato = new Prato(nomePrato, precoPrato, descricaoPrato, vegano, gluten, lactose);
-                                                menuDePratos.adicionarItem(novoPrato);
-                                                break;
-                                            case "2":
-                                                menuDePratos.exibirMenu();
-                                                System.out.println("Digite o nome do prato que deseja editar:");
-                                                String nomePratoEditar = scanner.nextLine();
-                                                Prato pratoExistente = null;
-                                                for (Item item : comidas) {
-                                                    if (item instanceof Prato && item.getNomeItem().equalsIgnoreCase(nomePratoEditar)) {
-                                                        pratoExistente = (Prato) item;
-                                                        break;
-                                                    }
-                                                }
-                                                if (pratoExistente != null) {
-                                                    System.out.println("Digite o novo nome do prato:");
-                                                    String novoNomePrato = scanner.nextLine();
-                                                    double precoPratoNovo = obterPrecoItem(scanner);
-
-                                                    System.out.println("Digite a nova descrição do prato:");
-                                                    String novaDescricaoPrato = scanner.nextLine();
-                                                    System.out.println("O prato é vegano? (S/N)");
-                                                    boolean novoVegano = scanner.nextLine().equalsIgnoreCase("S");
-                                                    System.out.println("O prato contém glúten? (S/N)");
-                                                    boolean novoGluten = scanner.nextLine().equalsIgnoreCase("S");
-                                                    System.out.println("O prato contém lactose? (S/N)");
-                                                    boolean novaLactose = scanner.nextLine().equalsIgnoreCase("S");
-
-                                                    Prato novoPratoEditado = new Prato(novoNomePrato, precoPratoNovo, novaDescricaoPrato, novoVegano, novoGluten, novaLactose);
-                                                    menuDePratos.editarItem(nomePratoEditar, novoPratoEditado);
-                                                } else {
-                                                    System.out.println("Prato não encontrado.");
-                                                }
-                                                break;
-                                            case "3":
-                                                menuDePratos.exibirMenu();
-                                                System.out.println("Digite o nome do prato que deseja deletar:");
-                                                String nomePratoDeletar = scanner.nextLine();
-                                                menuDePratos.deletarItem(nomePratoDeletar);
-                                                System.out.println("Prato deletado com sucesso.");
-                                                break;
-                                            case "4":
-                                                menuDePratos.exibirMenu();
-                                                break;
-                                            default:
-                                                break;
-                                        }
+                                    case "1":
+                                        menuDePratos.adicionarItem(garcomAdicionarPrato(scanner));
+                                        break;
+                                    case "2":
+                                        menuDePratos.exibirMenu();
+                                        System.out.println("Digite o nome do prato que deseja editar:");
+                                        String nomePratoEditar = scanner.nextLine();
+                                        menuDePratos.editarItem(nomePratoEditar, garcomEditarPrato(nomePratoEditar, scanner, comidas));
+                                        break;
+                                    case "3":
+                                        menuDePratos.exibirMenu();
+                                        menuDePratos.deletarItem(garcomDeletarPrato(scanner));
+                                        break;
+                                    case "4":
+                                        menuDePratos.exibirMenu();
+                                        break;
+                                    default:
+                                        break;
+                                }
                                         break;
                                     case "2":
                                         switch (menuBebidasGarcom(scanner)) {
                                             case "1":
-                                                System.out.println("Digite o nome da nova bebida:");
-                                                String nomeBebida = scanner.nextLine();
-                                                double precoBebida = obterPrecoItem(scanner);
-                                                System.out.println("Digite a descrição da nova bebida:");
-                                                String descricaoBebida = scanner.nextLine();
-                                                System.out.println("A bebida é alcoólica? (S/N)");
-                                                boolean alcoolica = scanner.nextLine().equalsIgnoreCase("S");
-
-                                                Bebida novaBebida = new Bebida(nomeBebida, precoBebida, descricaoBebida, alcoolica);
-                                                menuDeBebidas.adicionarItem(novaBebida);
+                                                menuDeBebidas.adicionarItem(garcomAdicionarBebida(scanner));
                                                 break;
                                             case "2":
                                                 menuDeBebidas.exibirMenu();
                                                 System.out.println("Digite o nome da bebida que deseja editar:");
                                                 String nomeBebidaEditar = scanner.nextLine();
-                                                Bebida bebidaExistente = null;
-                                                for (Item item : bebidas) {
-                                                    if (item instanceof Bebida && item.getNomeItem().equalsIgnoreCase(nomeBebidaEditar)) {
-                                                        bebidaExistente = (Bebida) item;
-                                                        break;
-                                                    }
-                                                }
-                                                if (bebidaExistente != null) {
-                                                    System.out.println("Digite o novo nome da bebida:");
-                                                    String novoNomeBebida = scanner.nextLine();
-                                                    double precoBebidaNova = obterPrecoItem(scanner);
-                                                    System.out.println("Digite a nova descrição da bebida:");
-                                                    String novaDescricaoBebida = scanner.nextLine();
-                                                    System.out.println("A bebida é alcoólica? (S/N)");
-                                                    boolean novaAlcoolica = scanner.nextLine().equalsIgnoreCase("S");
-
-                                                    Bebida novaBebidaEditada = new Bebida(novoNomeBebida, precoBebidaNova, novaDescricaoBebida, novaAlcoolica);
-                                                    menuDeBebidas.editarItem(nomeBebidaEditar, novaBebidaEditada);
-                                                } else {
-                                                    System.out.println("Bebida não encontrada.");
-                                                }
+                                                menuDeBebidas.editarItem(nomeBebidaEditar, garcomEditarBebida(nomeBebidaEditar, scanner, bebidas));
                                                 break;
                                             case "3":
                                                 menuDeBebidas.exibirMenu();
-                                                System.out.println("Digite o nome da bebida que deseja deletar:");
-                                                String nomeBebidaDeletar = scanner.nextLine();
-                                                menuDeBebidas.deletarItem(nomeBebidaDeletar);
-                                                System.out.println("Bebida deletada com sucesso.");
+                                                menuDeBebidas.deletarItem(garcomDeletarBebida(scanner));
                                                 break;
                                             case "4":
                                                 menuDeBebidas.exibirMenu();
@@ -350,69 +603,17 @@ public class Main {
                                     case "3":
                                         switch (menuVinhosGarcom(scanner)) {
                                             case "1":
-                                                System.out.println("Digite o nome do novo vinho:");
-                                                String nomeVinho = scanner.nextLine();
-                                                double precoVinho = obterPrecoItem(scanner);
-                                                System.out.println("Digite a descrição do novo vinho:");
-                                                String descricaoVinho = scanner.nextLine();
-                                                System.out.println("Digite a idade do vinho:");
-                                                int idadeVinho = Integer.parseInt(scanner.nextLine());
-                                                System.out.println("Digite a nacionalidade do vinho:");
-                                                String nacionalidadeVinho = scanner.nextLine();
-                                                System.out.println("Digite o tipo do vinho:");
-                                                String tipoVinho = scanner.nextLine();
-                                                System.out.println("Digite a uva do vinho:");
-                                                String uvaVinho = scanner.nextLine();
-                                                System.out.println("Digite o corpo do vinho:");
-                                                String corpoVinho = scanner.nextLine();
-                                                System.out.println("Digite o teor alcoólico do vinho:");
-                                                String teorAlcoolicoVinho = scanner.nextLine();
-
-                                                Vinho novoVinho = new Vinho(nomeVinho, precoVinho, descricaoVinho, idadeVinho, nacionalidadeVinho, tipoVinho, uvaVinho, corpoVinho, teorAlcoolicoVinho);
-                                                menuDeVinhos.adicionarItem(novoVinho);
+                                                menuDeVinhos.adicionarItem(garcomAdicionarVinho(scanner));
                                                 break;
                                             case "2":
                                                 menuDeVinhos.exibirMenu();
                                                 System.out.println("Digite o nome do vinho que deseja editar:");
                                                 String nomeVinhoEditar = scanner.nextLine();
-                                                Vinho vinhoExistente = null;
-                                                for (Item item : vinhos) {
-                                                    if (item instanceof Vinho && item.getNomeItem().equalsIgnoreCase(nomeVinhoEditar)) {
-                                                        vinhoExistente = (Vinho) item;
-                                                        break;
-                                                    }
-                                                }
-                                                if (vinhoExistente != null) {
-                                                    System.out.println("Digite o novo nome do vinho:");
-                                                    String novoNomeVinho = scanner.nextLine();
-                                                    double precoVinhoNovo = obterPrecoItem(scanner);
-                                                    System.out.println("Digite a nova descrição do vinho:");
-                                                    String novaDescricaoVinho = scanner.nextLine();
-                                                    System.out.println("Digite a nova idade do vinho:");
-                                                    int novaIdadeVinho = Integer.parseInt(scanner.nextLine());
-                                                    System.out.println("Digite a nova nacionalidade do vinho:");
-                                                    String novaNacionalidadeVinho = scanner.nextLine();
-                                                    System.out.println("Digite o novo tipo do vinho:");
-                                                    String novoTipoVinho = scanner.nextLine();
-                                                    System.out.println("Digite a nova uva do vinho:");
-                                                    String novaUvaVinho = scanner.nextLine();
-                                                    System.out.println("Digite o novo corpo do vinho:");
-                                                    String novoCorpoVinho = scanner.nextLine();
-                                                    System.out.println("Digite o novo teor alcoólico do vinho:");
-                                                    String novoTeorAlcoolicoVinho = scanner.nextLine();
-
-                                                    Vinho novoVinhoEditado = new Vinho(novoNomeVinho, precoVinhoNovo, novaDescricaoVinho, novaIdadeVinho, novaNacionalidadeVinho, novoTipoVinho, novaUvaVinho, novoCorpoVinho, novoTeorAlcoolicoVinho);
-                                                    menuDeVinhos.editarItem(nomeVinhoEditar, novoVinhoEditado);
-                                                } else {
-                                                    System.out.println("Vinho não encontrado.");
-                                                }
+                                                menuDeVinhos.editarItem(nomeVinhoEditar, garcomEditarVinho(nomeVinhoEditar, scanner, vinhos));
                                                 break;
                                             case "3":
                                                 menuDeVinhos.exibirMenu();
-                                                System.out.println("Digite o nome do vinho que deseja deletar:");
-                                                String nomeVinhoDeletar = scanner.nextLine();
-                                                menuDeVinhos.deletarItem(nomeVinhoDeletar);
-                                                System.out.println("Vinho deletado com sucesso.");
+                                                menuDeVinhos.deletarItem(garcomDeletarVinho(scanner));
                                                 break;
                                             case "4":
                                                 menuDeVinhos.exibirMenu();
@@ -430,117 +631,53 @@ public class Main {
                             case "2":
                                 switch (menuReservasGarcom(scanner)) {
                                     case "1":
-                                        System.out.println("Criando uma nova reserva:");
-
-                                        System.out.print("Digite a data da reserva (dd/MM/yyyy): ");
-                                        String dataInput = scanner.nextLine();
-                                        Date dataReserva = null;
-                                        try {
-                                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                                            dataReserva = dateFormat.parse(dataInput);
-                                        } catch (ParseException e) {
-                                            System.out.println("Formato de data inválido. A reserva não será criada.");
-                                            return;
+                                        Reserva reserva = garcomCriarReserva(scanner);
+                                        if (reserva != null) {
+                                            System.out.println("Reserva criada com sucesso: " + reserva);
+                                        } else {
+                                            System.out.println("Reserva não foi criada.");
                                         }
-
-                                        System.out.print("Digite o número da mesa: ");
-                                        int numeroMesa = Integer.parseInt(scanner.nextLine());
-
-                                        Mesa mesa = Mesa.encontrarMesa(numeroMesa);
-
-                                        if (mesa == null) {
-                                            System.out.println("Mesa não encontrada. A reserva não será criada.");
-                                            return;
-                                        }
-
-                                        System.out.print("Digite o nome do cliente: ");
-                                        String nomeCliente = scanner.nextLine();
-
-                                        Cliente clienteReserva = null;  // Declare a variável clienteReserva antes do bloco try-catch
-
-                                        try {
-                                            clienteReserva = Cliente.encontrarCliente(nomeCliente);
-                                            System.out.println("Cliente encontrado: " + clienteReserva.getNome() + ", Telefone: " + clienteReserva.getTelefone());
-
-                                            // Criar a reserva aqui, pois só deve ser feita se o cliente for encontrado
-                                            Reserva reserva = new Reserva(dataReserva, mesa, clienteReserva);
-                                            System.out.println("Reserva criada com sucesso!");
-
-                                        } catch (ClienteNaoEncontradoException e) {
-                                            System.out.println(e.getMessage());
-                                            // Não cria a reserva se o cliente não for encontrado
-                                        }
-
-
                                         break;
                                     case "2":
-                                        System.out.println("Editar reserva não implementado.");
+                                        Reserva.visualizarReservas(listaReservas);
+                                        System.out.print("Digite a data da reserva que deseja editar (dd/MM/yyyy): ");
+                                        String reservaEditada = scanner.nextLine();
+                                        garcomEditarReserva(reservaEditada, scanner, listaReservas);
                                         break;
                                     case "3":
-                                        System.out.println("Deletar reserva não implementado");
+                                        Reserva.visualizarReservas(listaReservas);
+                                        System.out.println("Qual a data da reserva?");
+                                        String dataCancelarReserva = scanner.nextLine();
+                                        System.out.println("Qual a mesa da reserva?");
+                                        int mesaCancelarReserva = scanner.nextInt();
+                                        System.out.println("Qual o cliente da reserva?");
+                                        String nomeCancelarReserva = scanner.nextLine();
+                                        Reserva.cancelarReserva(listaReservas, dataCancelarReserva, nomeCancelarReserva, mesaCancelarReserva);
                                         break;
                                     case "4":
-                                        Reserva.visualizarReservas();
+                                        Reserva.visualizarReservas(listaReservas);
                                         break;
                                     default:
                                         System.out.println("Opção inválida.");
                                         break;
                                 }
                                 break;
-                            case "3": // Menu de Mesas para Garçom
+                            case "3":
                                 switch (menuMesasGarcom(scanner)) {
-                                    case "1": // Adicionar Mesa
-                                        System.out.println("Digite o número da nova mesa:");
-                                        int numeroMesa = Integer.parseInt(scanner.nextLine());
-                                        System.out.println("Digite o número de lugares da nova mesa:");
-                                        int numLugaresMesa = Integer.parseInt(scanner.nextLine());
-                                        System.out.println("A mesa está reservada? (S/N)");
-                                        boolean reservadoMesa = scanner.nextLine().equalsIgnoreCase("S");
-
-                                        Mesa.adicionarMesa(numeroMesa, numLugaresMesa, reservadoMesa);
-                                        System.out.println("Mesa adicionada com sucesso.");
+                                    case "1":
+                                        garcomCriarMesa(scanner);
                                         break;
-                                    case "2": // Editar Mesa
+                                    case "2":
+                                        Mesa.exibirTodasMesas();
                                         System.out.println("Digite o número da mesa que deseja editar:");
                                         int numMesaEditar = Integer.parseInt(scanner.nextLine());
-                                        Mesa mesaEditar = null;
-                                        for (Mesa mesa : Mesa.getListaMesas()) {
-                                            if (mesa.getNumero() == numMesaEditar) {
-                                                mesaEditar = mesa;
-                                                break;
-                                            }
-                                        }
-                                        if (mesaEditar != null) {
-                                            System.out.println("Digite o novo número de lugares:");
-                                            int novoNumLugares = Integer.parseInt(scanner.nextLine());
-                                            System.out.println("A mesa está reservada? (S/N)");
-                                            boolean novoReservado = scanner.nextLine().equalsIgnoreCase("S");
-
-                                            mesaEditar.setNumLugares(novoNumLugares);
-                                            mesaEditar.setReservado(novoReservado);
-                                            System.out.println("Mesa editada com sucesso.");
-                                        } else {
-                                            System.out.println("Mesa não encontrada.");
-                                        }
+                                        garcomEditarMesa(numMesaEditar, scanner);
                                         break;
-                                    case "3": // Excluir Mesa
-                                        System.out.println("Digite o número da mesa que deseja excluir:");
-                                        int numMesaExcluir = Integer.parseInt(scanner.nextLine());
-                                        Mesa mesaExcluir = null;
-                                        for (Mesa mesa : Mesa.getListaMesas()) {
-                                            if (mesa.getNumero() == numMesaExcluir) {
-                                                mesaExcluir = mesa;
-                                                break;
-                                            }
-                                        }
-                                        if (mesaExcluir != null) {
-                                            mesaExcluir.excluirMesa(mesaExcluir);
-                                            System.out.println("Mesa excluída com sucesso.");
-                                        } else {
-                                            System.out.println("Mesa não encontrada.");
-                                        }
+                                    case "3":
+                                        Mesa.exibirTodasMesas();
+                                        garcomExcluirMesa(scanner);
                                         break;
-                                    case "4": // Listar Mesas
+                                    case "4":
                                         Mesa.exibirTodasMesas();
                                         break;
                                     default:
