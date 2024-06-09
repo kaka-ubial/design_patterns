@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.io.Console;
+
 
 public class Main {
     private static int lastGarcomId = 1;
@@ -25,40 +27,40 @@ public class Main {
 
     public static String menuGarcom(Scanner scanner) {
         System.out.println("MENU");
-        System.out.println("1 - Menus do Restaurante\n2 - Reservas\n3 - Mesas\n4 - Comandas");
+        System.out.println("1 - Menus do Restaurante\n2 - Reservas\n3 - Mesas\n4 - Comandas\n5 - Sair");
         String opcaoGarcom = scanner.nextLine();
         return opcaoGarcom;
     }
 
     public static String menuPratosGarcom(Scanner scanner) {
         System.out.println("O que deseja fazer?");
-        System.out.println("1 - Adicionar Prato ao Menu\n2 - Editar Prato\n3 - Deletar Prato\n4 - Exibir Menu");
+        System.out.println("1 - Adicionar Prato ao Menu\n2 - Editar Prato\n3 - Deletar Prato\n4 - Exibir Menu\n5 - Voltar");
         String opcaoPrato = scanner.nextLine();
         return opcaoPrato;
     }
 
     public static String menuBebidasGarcom(Scanner scanner) {
         System.out.println("O que deseja fazer?");
-        System.out.println("1 - Adicionar Bebida ao Menu\n2 - Editar Bebida\n3 - Deletar Bebida\n4 - Exibir Menu");
+        System.out.println("1 - Adicionar Bebida ao Menu\n2 - Editar Bebida\n3 - Deletar Bebida\n4 - Exibir Menu\n5 - Voltar");
         String opcaoBebida = scanner.nextLine();
         return opcaoBebida;
     }
 
     public static String menuVinhosGarcom(Scanner scanner) {
         System.out.println("O que deseja fazer?");
-        System.out.println("1 - Adicionar Vinho ao Menu\n2 - Editar Vinho\n3 - Deletar Vinho\n4 - Exibir Menu");
+        System.out.println("1 - Adicionar Vinho ao Menu\n2 - Editar Vinho\n3 - Deletar Vinho\n4 - Exibir Menu\n5 - Voltar");
         String opcaoVinho = scanner.nextLine();
         return opcaoVinho;
     }
 
     public static String menuMesasGarcom(Scanner scanner) {
-        System.out.println("O que deseja fazer?\n1 - Adicionar mesa\n2 - Editar mesa\n3 - Excluir mesa\n4 - Listar mesas");
+        System.out.println("O que deseja fazer?\n1 - Adicionar mesa\n2 - Editar mesa\n3 - Excluir mesa\n4 - Listar mesas\n5 - Voltar");
         String opcaoMesas = scanner.nextLine();
         return opcaoMesas;
     }
 
     public static String menuReservasGarcom(Scanner scanner) {
-        System.out.println("O que você deseja fazer?\n1 - Adicionar reserva\n2 - Editar reserva\n3 - Excluir reserva\n4 - Listar reservas");
+        System.out.println("O que você deseja fazer?\n1 - Adicionar reserva\n2 - Editar reserva\n3 - Excluir reserva\n4 - Listar reservas\n5 - Voltar");
         String opcaoReservas = scanner.nextLine();
         return opcaoReservas;
     }
@@ -85,8 +87,19 @@ public class Main {
     public static Garcom loginGarcom(Scanner scanner) {
         System.out.println("Qual seu nome?");
         String nomeGarcom = scanner.nextLine();
-        System.out.println("Qual seu turno?");
-        String turnoGarcom = scanner.nextLine();
+
+        String turnoGarcom = "";
+        boolean turnoValido = false;
+        while (!turnoValido) {
+            System.out.println("Qual seu turno? (diurno/noturno)");
+            turnoGarcom = scanner.nextLine().trim().toLowerCase(); // Converte para minúsculas para facilitar a comparação
+            if (turnoGarcom.equals("diurno") || turnoGarcom.equals("noturno")) {
+                turnoValido = true;
+            } else {
+                System.out.println("Turno inválido. Por favor, escolha entre diurno e noturno.");
+            }
+        }
+
         String emailGarcom = "";
         boolean emailValido = false;
         while (!emailValido) {
@@ -98,10 +111,11 @@ public class Main {
                 System.out.println("Email inválido. Por favor, insira um email válido.");
             }
         }
+
         System.out.println("Qual sua senha?");
         String senhaGarcom = scanner.nextLine();
-        return new Garcom(nomeGarcom, turnoGarcom, lastGarcomId, emailGarcom, senhaGarcom);
 
+        return new Garcom(nomeGarcom, turnoGarcom, lastGarcomId, emailGarcom, senhaGarcom);
     }
 
     public static Prato garcomAdicionarPrato(Scanner scanner) {
@@ -607,35 +621,45 @@ public class Main {
 
     public static void fazerReserva(Scanner scanner, Cliente cliente) {
         listarMesasDisponiveis();
-        System.out.println("Digite o número da mesa que deseja reservar:");
-        int numeroMesa = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println("Digite o número da mesa que deseja reservar (digite 'C' para cancelar):");
 
-        Mesa mesaSelecionada = null;
-        for (Mesa mesa : Mesa.getListaMesas()) {
-            if (mesa.getNumero() == numeroMesa && !mesa.isReservado()) {
-                mesaSelecionada = mesa;
-                break;
-            }
+        String input = scanner.nextLine().trim();
+        if (input.equalsIgnoreCase("C")) {
+            System.out.println("Reserva cancelada.");
+            return; // Retorna sem fazer nada se o usuário cancelar
         }
 
-        if (mesaSelecionada != null) {
-            System.out.println("Digite a data da reserva (dd/MM/yyyy):");
-            String dataReservaStr = scanner.nextLine();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                Date dataReserva = dateFormat.parse(dataReservaStr);
-                Reserva reserva = new Reserva(dataReserva, mesaSelecionada, cliente, listaReservas);
-                mesaSelecionada.setReservado(true);
-                System.out.println("Reserva realizada com sucesso para a mesa #" + mesaSelecionada.getNumero());
-            } catch (ParseException e) {
-                System.out.println("Formato de data inválido. Use o formato dd/MM/yyyy.");
+        try {
+            int numeroMesa = Integer.parseInt(input);
+            Mesa mesaSelecionada = buscarMesa(numeroMesa);
+            if (mesaSelecionada != null && !mesaSelecionada.isReservado()) {
+                System.out.println("Digite a data da reserva (dd/MM/yyyy):");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date dataReserva = dateFormat.parse(scanner.nextLine().trim());
+                    Reserva reserva = new Reserva(dataReserva, mesaSelecionada, cliente, listaReservas);
+                    mesaSelecionada.setReservado(true);
+                    System.out.println("Reserva realizada com sucesso para a mesa #" + mesaSelecionada.getNumero());
+                } catch (ParseException e) {
+                    System.out.println("Formato de data inválido. Use o formato dd/MM/yyyy.");
+                }
+            } else {
+                System.out.println("Mesa não disponível para reserva.");
             }
-        } else {
-            System.out.println("Mesa não disponível para reserva.");
+        } catch (NumberFormatException e) {
+            System.out.println("Entrada inválida. Por favor, digite um número de mesa válido.");
         }
     }
 
+    // Método para buscar uma mesa pelo número
+    private static Mesa buscarMesa(int numeroMesa) {
+        for (Mesa mesa : Mesa.getListaMesas()) {
+            if (mesa.getNumero() == numeroMesa) {
+                return mesa;
+            }
+        }
+        return null;
+    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Mesa.inicializarMesas();
@@ -661,7 +685,7 @@ public class Main {
                 while (true) {
                     switch (menuCliente(scanner)) {
                         case "1":
-                            System.out.println("Qual cardápio você deseja visualizar?\n1 - Cardápio de Pratos\n2 - Cardápio de Bebidas\n3 - Carta de Vinhos");
+                            System.out.println("Qual cardápio você deseja visualizar?\n1 - Cardápio de Pratos\n2 - Cardápio de Bebidas\n3 - Carta de Vinhos\n4 - Voltar");
                             String menuUsuario = scanner.nextLine();
                             switch (menuUsuario) {
                                 case "1":
@@ -672,6 +696,8 @@ public class Main {
                                     break;
                                 case "3":
                                     menuDeVinhos.exibirMenu();
+                                    break;
+                                case "4":
                                     break;
                                 default:
                                     System.out.println("Opção inválida.");
@@ -717,7 +743,10 @@ public class Main {
                                         case "4":
                                             menuDePratos.exibirMenu();
                                             break;
+                                        case "5":
+                                            break;
                                         default:
+                                            System.out.println("Digite uma opção válida");
                                             break;
                                     }
                                     break;
@@ -739,7 +768,10 @@ public class Main {
                                         case "4":
                                             menuDeBebidas.exibirMenu();
                                             break;
+                                        case "5":
+                                            break;
                                         default:
+                                            System.out.println("Digite uma opção válida");
                                             break;
                                     }
                                     break;
@@ -761,7 +793,10 @@ public class Main {
                                         case "4":
                                             menuDeVinhos.exibirMenu();
                                             break;
+                                        case "5":
+                                            break;
                                         default:
+                                            System.out.println("Digite uma opção válida");
                                             break;
                                     }
                                     break;
@@ -800,8 +835,10 @@ public class Main {
                                 case "4":
                                     Reserva.visualizarReservas(listaReservas);
                                     break;
+                                case "5":
+                                    break;
                                 default:
-                                    System.out.println("Opção inválida.");
+                                    System.out.println("Digite uma opção válida");
                                     break;
                             }
                             break;
@@ -823,8 +860,10 @@ public class Main {
                                 case "4":
                                     Mesa.exibirTodasMesas();
                                     break;
+                                case "5":
+                                    break;
                                 default:
-                                    System.out.println("Opção inválida.");
+                                    System.out.println("Digite uma opção válida");
                                     break;
                             }
                             break;
@@ -844,11 +883,13 @@ public class Main {
                                 case "4":
                                     break;
                                 default:
-                                    System.out.println("Opção inválida.");
+                                    System.out.println("Digite uma opção válida");
                                     break;
                             }
                             break;
-
+                        case "5":
+                            System.out.println("Obrigado por usar nosso sistema. Até mais!");
+                            return;
                         default:
                             System.out.println("Opção inválida.");
                             break;
