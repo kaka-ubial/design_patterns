@@ -31,21 +31,21 @@ public class Main {
 
     public static String menuPratosGarcom(Scanner scanner) {
         System.out.println("O que deseja fazer?");
-        System.out.println("1 - Adicionar Prato ao Menu\n2 - Editar Prato\n3 - Deletar Prato\n4 - Exbibir Menu");
+        System.out.println("1 - Adicionar Prato ao Menu\n2 - Editar Prato\n3 - Deletar Prato\n4 - Exibir Menu");
         String opcaoPrato = scanner.nextLine();
         return opcaoPrato;
     }
 
     public static String menuBebidasGarcom(Scanner scanner) {
         System.out.println("O que deseja fazer?");
-        System.out.println("1 - Adicionar Bebida ao Menu\n2 - Editar Bebida\n3 - Deletar Bebida\n4 - Exbibir Menu");
+        System.out.println("1 - Adicionar Bebida ao Menu\n2 - Editar Bebida\n3 - Deletar Bebida\n4 - Exibir Menu");
         String opcaoBebida = scanner.nextLine();
         return opcaoBebida;
     }
 
     public static String menuVinhosGarcom(Scanner scanner) {
         System.out.println("O que deseja fazer?");
-        System.out.println("1 - Adicionar Vinho ao Menu\n2 - Editar Vinho\n3 - Deletar Vinho\n4 - Exbibir Menu");
+        System.out.println("1 - Adicionar Vinho ao Menu\n2 - Editar Vinho\n3 - Deletar Vinho\n4 - Exibir Menu");
         String opcaoVinho = scanner.nextLine();
         return opcaoVinho;
     }
