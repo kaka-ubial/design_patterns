@@ -7,7 +7,7 @@ public class Comanda {
 	private static int proximoId = 1;
 	private int idComanda;
 	private ArrayList<Item> itensComanda = new ArrayList<>();
-	private ArrayList<Comanda> listaComandas = new ArrayList<>();
+	private static ArrayList<Comanda> listaComandas = new ArrayList<>();
 	private double precoTotal;
 	private boolean pago;
 	private Mesa mesa;
@@ -39,7 +39,7 @@ public class Comanda {
 		this.itensComanda = itensComanda;
 	}
 
-	public ArrayList<Comanda> getListaComandas() {
+	public static ArrayList<Comanda> getListaComandas() {
 		return listaComandas;
 	}
 
@@ -88,6 +88,8 @@ public class Comanda {
 		}
 	}
 
+
+
 	//método para calcular preço final da comanda
 	public double calcularPrecoTotal() {
 		double total = 0;
@@ -108,7 +110,7 @@ public class Comanda {
 	}
 
 	//método para exibir a lista de comandas:
-	public void exibirListaComandas(ArrayList<Comanda> listaComandas) {
+	public static void exibirListaComandas() {
 		if (listaComandas.isEmpty()){
 			System.out.println("Nenhuma comanda encontrada.");
 		}
