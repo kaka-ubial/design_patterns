@@ -89,6 +89,22 @@ public class Comanda {
 		}
 	}
 
+	public static void deletarComanda(int idComanda) {
+		Comanda comandaRemovida = null;
+		for (Comanda comanda : listaComandas) {
+			if (comanda.getIdComanda() == idComanda) {
+				comandaRemovida = comanda;
+				break;
+			}
+		}
+		if (comandaRemovida != null) {
+			listaComandas.remove(comandaRemovida);
+			System.out.println("Comanda #" + idComanda + " deletada com sucesso.");
+		} else {
+			System.out.println("Comanda #" + idComanda + " não encontrada.");
+		}
+	}
+
 
 
 	//método para calcular preço final da comanda
