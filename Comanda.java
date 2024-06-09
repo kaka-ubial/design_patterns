@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 public class Comanda {
 	//atributos
@@ -110,14 +111,28 @@ public class Comanda {
 	}
 
 	//método para exibir a lista de comandas:
+
 	public static void exibirListaComandas() {
+		DecimalFormat df = new DecimalFormat("#.00");
+
 		if (listaComandas.isEmpty()){
 			System.out.println("Nenhuma comanda encontrada.");
-		}
-		else{
-			System.out.println(listaComandas);
+		} else {
+			for (Comanda comanda : listaComandas) {
+				System.out.println("Comanda #" + comanda.getIdComanda());
+				System.out.println("Mesa: " + comanda.getMesa().getNumero());
+				System.out.println("Itens:");
+				for (Item item : comanda.getItensComanda()) {
+					System.out.println("- " + item.getNomeItem() + ": R$" + df.format(item.getPrecoItem()));
+				}
+				System.out.println("Total: R$" + df.format(comanda.getPrecoTotal()));
+				System.out.println("Pago: " + (comanda.isPago() ? "Sim" : "Não"));
+				System.out.println("-----------------------------------------");
+			}
 		}
 	}
+
+
 
 	//método para mudar o estado da comanda para paga
 	public void confirmarPagamentoComanda(){

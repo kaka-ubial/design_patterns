@@ -64,7 +64,7 @@ public class Main {
     }
 
     public static String menuComandasGarcom(Scanner scanner) {
-        System.out.println("O que você deseja fazer?\n1 - Abrir uma comanda\n2 - Editar uma comanda\n3 - Fechar uma comanda\n4 - Excluir uma comanda");
+        System.out.println("O que você deseja fazer?\n1 - Abrir uma comanda\n2 - Editar uma comanda\n4 - Excluir uma comanda");
         String opcaoComandas = scanner.nextLine();
         return opcaoComandas;
     }
@@ -486,9 +486,11 @@ public class Main {
                         adicionarItemComanda(comanda, comidas, bebidas, vinhos, scanner);
                         break;
                     case 2:
+                        comanda.exibirComandaEspecifica(comanda);
                         removerItemComanda(comanda, scanner);
                         break;
                     case 3:
+                        comanda.exibirComandaEspecifica(comanda);
                         comanda.confirmarPagamentoComanda();
                         break;
                     case 4:
@@ -565,9 +567,6 @@ public class Main {
         System.out.println("Item não encontrado na comanda.");
     }
 
-    public static void garcomFecharComanda(Scanner scanner) {
-
-    }
 
     public static void garcomDeletarComanda(Scanner scanner) {
 
@@ -847,7 +846,6 @@ public class Main {
                                     System.out.println("Opção inválida.");
                                     break;
                             }
-                            garcomAbrirComanda(scanner);
                             break;
 
                         default:
