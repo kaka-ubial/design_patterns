@@ -19,7 +19,6 @@ public class CartaVinhos extends Menu {
         }
     }
 
-    // Método para editar um vinho na carta de vinhos
     @Override
     public void editarItem(String nomeVinho, Item novoItem) {
         for (Item item : this.itens) {
@@ -33,7 +32,6 @@ public class CartaVinhos extends Menu {
         System.out.println("Vinho não encontrado na carta de vinhos.");
     }
 
-    // Método para deletar um vinho da carta de vinhos
     @Override
     public void deletarItem(String nomeVinho) {
         for (Item item : this.itens) {

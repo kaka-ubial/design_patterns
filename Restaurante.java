@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Restaurante {
 	//atributos
@@ -15,6 +16,7 @@ public class Restaurante {
 
 	private String telefone;
 
+
 	public Restaurante(String nome, String culinaria, String descricao, String endereco, String telefone) {
 		this.nome = nome;
 		this.culinaria = culinaria;
@@ -22,6 +24,7 @@ public class Restaurante {
 		this.descricao = descricao;
 		this.horarioFuncionamento = endereco;
 		this.telefone = telefone;
+
 	}
 
 	// getters e setters

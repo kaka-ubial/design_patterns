@@ -63,6 +63,30 @@ public class Main {
         return opcaoReservas;
     }
 
+    public static double obterPrecoItem(Scanner scanner) {
+        String precoItemStr;
+        while (true) {
+            System.out.println("Digite o preço da nova bebida no formato R$ 00,00:");
+            precoItemStr = scanner.nextLine();
+
+            // Verifica se o preço está no formato correto
+            if (precoItemStr.matches("^R\\$ \\d{1,3}(\\.\\d{3})*,\\d{2}$")) {
+                break;
+            } else {
+                System.out.println("Formato inválido. Por favor, digite novamente.");
+            }
+        }
+
+        // Remove o "R$ " e substitui "," por "." para conversão
+        precoItemStr = precoItemStr.replace("R$ ", "").replace(".", "").replace(",", ".");
+        return Double.parseDouble(precoItemStr);
+    }
+
+    public static boolean isValidEmail(String email) {
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(regex);
+    }
+
     public static boolean validarTelefone(String telefone) {
         // Expressão regular para validar telefone
         String regex = "\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}";
@@ -185,8 +209,17 @@ public class Main {
                 String nomeGarcom = scanner.nextLine();
                 System.out.println("Qual seu turno?");
                 String turnoGarcom = scanner.nextLine();
-                System.out.println("Qual seu email?");
-                String emailGarcom = scanner.nextLine();
+                String emailGarcom = "";
+                boolean emailValido = false;
+                while (!emailValido) {
+                    System.out.println("Qual seu email?");
+                    emailGarcom = scanner.nextLine();
+                    if (isValidEmail(emailGarcom)) {
+                        emailValido = true;
+                    } else {
+                        System.out.println("Email inválido. Por favor, insira um email válido.");
+                    }
+                }
                 System.out.println("Qual sua senha?");
                 String senhaGarcom = scanner.nextLine();
                 Garcom garcom = new Garcom(nomeGarcom, turnoGarcom, lastGarcomId, emailGarcom, senhaGarcom);
@@ -202,8 +235,7 @@ public class Main {
                                             case "1":
                                                 System.out.println("Digite o nome do novo prato:");
                                                 String nomePrato = scanner.nextLine();
-                                                System.out.println("Digite o preço do novo prato:");
-                                                double precoPrato = Double.parseDouble(scanner.nextLine());
+                                                double precoPrato = obterPrecoItem(scanner);
                                                 System.out.println("Digite a descrição do novo prato:");
                                                 String descricaoPrato = scanner.nextLine();
                                                 System.out.println("O prato é vegano? (S/N)");
@@ -215,9 +247,9 @@ public class Main {
 
                                                 Prato novoPrato = new Prato(nomePrato, precoPrato, descricaoPrato, vegano, gluten, lactose);
                                                 menuDePratos.adicionarItem(novoPrato);
-                                                System.out.println("Prato adicionado com sucesso.");
                                                 break;
                                             case "2":
+                                                menuDePratos.exibirMenu();
                                                 System.out.println("Digite o nome do prato que deseja editar:");
                                                 String nomePratoEditar = scanner.nextLine();
                                                 Prato pratoExistente = null;
@@ -230,8 +262,8 @@ public class Main {
                                                 if (pratoExistente != null) {
                                                     System.out.println("Digite o novo nome do prato:");
                                                     String novoNomePrato = scanner.nextLine();
-                                                    System.out.println("Digite o novo preço do prato:");
-                                                    double novoPrecoPrato = Double.parseDouble(scanner.nextLine());
+                                                    double precoPratoNovo = obterPrecoItem(scanner);
+
                                                     System.out.println("Digite a nova descrição do prato:");
                                                     String novaDescricaoPrato = scanner.nextLine();
                                                     System.out.println("O prato é vegano? (S/N)");
@@ -241,14 +273,14 @@ public class Main {
                                                     System.out.println("O prato contém lactose? (S/N)");
                                                     boolean novaLactose = scanner.nextLine().equalsIgnoreCase("S");
 
-                                                    Prato novoPratoEditado = new Prato(novoNomePrato, novoPrecoPrato, novaDescricaoPrato, novoVegano, novoGluten, novaLactose);
+                                                    Prato novoPratoEditado = new Prato(novoNomePrato, precoPratoNovo, novaDescricaoPrato, novoVegano, novoGluten, novaLactose);
                                                     menuDePratos.editarItem(nomePratoEditar, novoPratoEditado);
-                                                    System.out.println("Prato editado com sucesso.");
                                                 } else {
                                                     System.out.println("Prato não encontrado.");
                                                 }
                                                 break;
                                             case "3":
+                                                menuDePratos.exibirMenu();
                                                 System.out.println("Digite o nome do prato que deseja deletar:");
                                                 String nomePratoDeletar = scanner.nextLine();
                                                 menuDePratos.deletarItem(nomePratoDeletar);
@@ -266,8 +298,7 @@ public class Main {
                                             case "1":
                                                 System.out.println("Digite o nome da nova bebida:");
                                                 String nomeBebida = scanner.nextLine();
-                                                System.out.println("Digite o preço da nova bebida:");
-                                                double precoBebida = Double.parseDouble(scanner.nextLine());
+                                                double precoBebida = obterPrecoItem(scanner);
                                                 System.out.println("Digite a descrição da nova bebida:");
                                                 String descricaoBebida = scanner.nextLine();
                                                 System.out.println("A bebida é alcoólica? (S/N)");
@@ -275,9 +306,9 @@ public class Main {
 
                                                 Bebida novaBebida = new Bebida(nomeBebida, precoBebida, descricaoBebida, alcoolica);
                                                 menuDeBebidas.adicionarItem(novaBebida);
-                                                System.out.println("Bebida adicionada com sucesso.");
                                                 break;
                                             case "2":
+                                                menuDeBebidas.exibirMenu();
                                                 System.out.println("Digite o nome da bebida que deseja editar:");
                                                 String nomeBebidaEditar = scanner.nextLine();
                                                 Bebida bebidaExistente = null;
@@ -290,21 +321,20 @@ public class Main {
                                                 if (bebidaExistente != null) {
                                                     System.out.println("Digite o novo nome da bebida:");
                                                     String novoNomeBebida = scanner.nextLine();
-                                                    System.out.println("Digite o novo preço da bebida:");
-                                                    double novoPrecoBebida = Double.parseDouble(scanner.nextLine());
+                                                    double precoBebidaNova = obterPrecoItem(scanner);
                                                     System.out.println("Digite a nova descrição da bebida:");
                                                     String novaDescricaoBebida = scanner.nextLine();
                                                     System.out.println("A bebida é alcoólica? (S/N)");
                                                     boolean novaAlcoolica = scanner.nextLine().equalsIgnoreCase("S");
 
-                                                    Bebida novaBebidaEditada = new Bebida(novoNomeBebida, novoPrecoBebida, novaDescricaoBebida, novaAlcoolica);
+                                                    Bebida novaBebidaEditada = new Bebida(novoNomeBebida, precoBebidaNova, novaDescricaoBebida, novaAlcoolica);
                                                     menuDeBebidas.editarItem(nomeBebidaEditar, novaBebidaEditada);
-                                                    System.out.println("Bebida editada com sucesso.");
                                                 } else {
                                                     System.out.println("Bebida não encontrada.");
                                                 }
                                                 break;
                                             case "3":
+                                                menuDeBebidas.exibirMenu();
                                                 System.out.println("Digite o nome da bebida que deseja deletar:");
                                                 String nomeBebidaDeletar = scanner.nextLine();
                                                 menuDeBebidas.deletarItem(nomeBebidaDeletar);
@@ -322,8 +352,7 @@ public class Main {
                                             case "1":
                                                 System.out.println("Digite o nome do novo vinho:");
                                                 String nomeVinho = scanner.nextLine();
-                                                System.out.println("Digite o preço do novo vinho:");
-                                                double precoVinho = Double.parseDouble(scanner.nextLine());
+                                                double precoVinho = obterPrecoItem(scanner);
                                                 System.out.println("Digite a descrição do novo vinho:");
                                                 String descricaoVinho = scanner.nextLine();
                                                 System.out.println("Digite a idade do vinho:");
@@ -341,9 +370,9 @@ public class Main {
 
                                                 Vinho novoVinho = new Vinho(nomeVinho, precoVinho, descricaoVinho, idadeVinho, nacionalidadeVinho, tipoVinho, uvaVinho, corpoVinho, teorAlcoolicoVinho);
                                                 menuDeVinhos.adicionarItem(novoVinho);
-                                                System.out.println("Vinho adicionado com sucesso.");
                                                 break;
                                             case "2":
+                                                menuDeVinhos.exibirMenu();
                                                 System.out.println("Digite o nome do vinho que deseja editar:");
                                                 String nomeVinhoEditar = scanner.nextLine();
                                                 Vinho vinhoExistente = null;
@@ -356,8 +385,7 @@ public class Main {
                                                 if (vinhoExistente != null) {
                                                     System.out.println("Digite o novo nome do vinho:");
                                                     String novoNomeVinho = scanner.nextLine();
-                                                    System.out.println("Digite o novo preço do vinho:");
-                                                    double novoPrecoVinho = Double.parseDouble(scanner.nextLine());
+                                                    double precoVinhoNovo = obterPrecoItem(scanner);
                                                     System.out.println("Digite a nova descrição do vinho:");
                                                     String novaDescricaoVinho = scanner.nextLine();
                                                     System.out.println("Digite a nova idade do vinho:");
@@ -373,14 +401,14 @@ public class Main {
                                                     System.out.println("Digite o novo teor alcoólico do vinho:");
                                                     String novoTeorAlcoolicoVinho = scanner.nextLine();
 
-                                                    Vinho novoVinhoEditado = new Vinho(novoNomeVinho, novoPrecoVinho, novaDescricaoVinho, novaIdadeVinho, novaNacionalidadeVinho, novoTipoVinho, novaUvaVinho, novoCorpoVinho, novoTeorAlcoolicoVinho);
+                                                    Vinho novoVinhoEditado = new Vinho(novoNomeVinho, precoVinhoNovo, novaDescricaoVinho, novaIdadeVinho, novaNacionalidadeVinho, novoTipoVinho, novaUvaVinho, novoCorpoVinho, novoTeorAlcoolicoVinho);
                                                     menuDeVinhos.editarItem(nomeVinhoEditar, novoVinhoEditado);
-                                                    System.out.println("Vinho editado com sucesso.");
                                                 } else {
                                                     System.out.println("Vinho não encontrado.");
                                                 }
                                                 break;
                                             case "3":
+                                                menuDeVinhos.exibirMenu();
                                                 System.out.println("Digite o nome do vinho que deseja deletar:");
                                                 String nomeVinhoDeletar = scanner.nextLine();
                                                 menuDeVinhos.deletarItem(nomeVinhoDeletar);
@@ -404,7 +432,7 @@ public class Main {
                                     case "1":
                                         System.out.println("Criando uma nova reserva:");
 
-                                        System.out.print("Digite a data da reserva (dd/MM/yyyy HH:mm): ");
+                                        System.out.print("Digite a data da reserva (dd/MM/yyyy): ");
                                         String dataInput = scanner.nextLine();
                                         Date dataReserva = null;
                                         try {
