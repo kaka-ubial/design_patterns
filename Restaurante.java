@@ -1,8 +1,8 @@
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
 
-public class Restaurante {
+public class Restaurante implements MinhaSerializable, Serializable {
 	//atributos
 	private String nome;
 
@@ -17,7 +17,7 @@ public class Restaurante {
 	private String telefone;
 
 
-	public Restaurante(String nome, String culinaria, String descricao, String endereco, String horarioFuncionamento, String telefone) {
+	public Restaurante() {
 		this.nome = "Restaurante Feliz";
 		this.culinaria = "Contemporânea";
 		this.endereco = "Avenida Fulano de Tal 1235";
@@ -66,7 +66,7 @@ public class Restaurante {
 
 	public void exibirInfo() {
 		System.out.println("Nome: " + nome);
-		System.out.println("Culinaria: " + culinaria);
+		System.out.println("Culinária: " + culinaria);
 		System.out.println("Descrição: " + descricao);
 		System.out.println("Endereço: " + endereco);
 		System.out.println("Horário de Funcionamento: " + horarioFuncionamento);
@@ -80,6 +80,28 @@ public class Restaurante {
 		setEndereco(endereco);
 		setHorarioFuncionamento(horarioFuncionamento);
 		setTelefone(telefone);
+	}
+
+	public byte[] serializar() throws IOException {
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		try (ObjectOutputStream escritor = new ObjectOutputStream(byteArrayOutputStream)) {
+			escritor.writeObject(this);
+		}
+		return byteArrayOutputStream.toByteArray();
+	}
+
+	@Override
+	public void desserializar(byte[] dados) throws IOException, ClassNotFoundException {
+		ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(dados);
+		try (ObjectInputStream leitor = new ObjectInputStream(byteArrayInputStream)) {
+			Restaurante restaurante = (Restaurante) leitor.readObject();
+			this.nome = restaurante.nome;
+			this.culinaria = restaurante.culinaria;
+			this.descricao = restaurante.descricao;
+			this.endereco = restaurante.endereco;
+			this.horarioFuncionamento = restaurante.horarioFuncionamento;
+			this.telefone = restaurante.telefone;
+		}
 	}
 
 	public void salvarRestauranteEmArquivo() {

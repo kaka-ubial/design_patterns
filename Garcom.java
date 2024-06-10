@@ -10,12 +10,9 @@ public class Garcom extends Usuario {
 	private String senha;
 	private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-	public Garcom(String nome, String turno, int idGarcom, String email, String senha) {
+	public Garcom(String nome, int idGarcom) {
 		super(nome);
-		this.turno = turno;
 		this.idGarcom = idGarcom;
-		this.email = email;
-		this.senha = senha;
 		listaUsuarios.add(this);
 	}
 

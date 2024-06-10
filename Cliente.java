@@ -64,7 +64,7 @@ public class Cliente extends Usuario {
 		}
 	}
 
-	public static void salvarClienteEmArquivo() {
+	public void salvarClienteEmArquivo() {
 		try (FileWriter escritor = new FileWriter("clientes.txt")) {
 			for (Usuario usuario : listaClientes) {
 				if (usuario instanceof Cliente) {

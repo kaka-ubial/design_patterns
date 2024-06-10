@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import java.io.Console;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.*;
 
 
 public class Main {
@@ -19,7 +22,7 @@ public class Main {
 
     public static String menuCliente(Scanner scanner) {
         System.out.println("O que você deseja fazer?");
-        System.out.println("1 - Visualizar cardápio\n2 - Reservar uma mesa\n3 - Sair");
+        System.out.println("1 - Visualizar cardápio\n2 - Reservar uma mesa\n4 - Sair");
         String opcaoUsuario = scanner.nextLine();
         return opcaoUsuario;
     }
@@ -78,43 +81,20 @@ public class Main {
             System.out.println("Qual seu telefone? (Formato: (XX) XXXXX-XXXX)");
             telefone = scanner.nextLine();
         } while (!validarTelefone(telefone));
-
-        return new Cliente(nome, telefone);
+        System.out.println("Você deseja salvar seu cadastro?(S/N)");
+        String save = scanner.nextLine();
+        Cliente cliente = new Cliente(nome, telefone);
+        if (save.equals("S")){
+            cliente.salvarClienteEmArquivo();
+        }
+        return cliente;
     }
 
     //Funções Garçom
     public static Garcom loginGarcom(Scanner scanner) {
         System.out.println("Qual seu nome?");
         String nomeGarcom = scanner.nextLine();
-
-        String turnoGarcom = "";
-        boolean turnoValido = false;
-        while (!turnoValido) {
-            System.out.println("Qual seu turno? (diurno/noturno)");
-            turnoGarcom = scanner.nextLine().trim().toLowerCase(); // Converte para minúsculas para facilitar a comparação
-            if (turnoGarcom.equals("diurno") || turnoGarcom.equals("noturno")) {
-                turnoValido = true;
-            } else {
-                System.out.println("Turno inválido. Por favor, escolha entre diurno e noturno.");
-            }
-        }
-
-        String emailGarcom = "";
-        boolean emailValido = false;
-        while (!emailValido) {
-            System.out.println("Qual seu email?");
-            emailGarcom = scanner.nextLine();
-            if (isValidEmail(emailGarcom)) {
-                emailValido = true;
-            } else {
-                System.out.println("Email inválido. Por favor, insira um email válido.");
-            }
-        }
-
-        System.out.println("Qual sua senha?");
-        String senhaGarcom = scanner.nextLine();
-
-        return new Garcom(nomeGarcom, turnoGarcom, lastGarcomId, emailGarcom, senhaGarcom);
+        return new Garcom(nomeGarcom, lastGarcomId);
     }
 
     public static Prato garcomAdicionarPrato(Scanner scanner) {
@@ -659,14 +639,12 @@ public class Main {
         }
         return null;
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Mesa.inicializarMesas();
         Cliente.inicializarClientes();
         Reserva.inicializarReservas(listaReservas);
-        Cliente cliente1 = new Cliente("edu", "22323");
-        Cliente.salvarClienteEmArquivo();
-
 
         // Gerar itens aleatórios
         ArrayList<Item> comidas = GeradorItens.gerarItensAleatorios(Prato.class, 5);
@@ -677,6 +655,39 @@ public class Main {
         Menu menuDePratos = new MenuComidas(comidas, "Menu de Pratos");
         Menu menuDeBebidas = new MenuBebidas(bebidas, "Menu de Bebidas");
         Menu menuDeVinhos = new CartaVinhos(vinhos, "Carta de Vinhos");
+
+        Restaurante meuRestaurante = new Restaurante();
+
+        // Serializar o restaurante
+        byte[] dadosSerializados = null;
+        try {
+            dadosSerializados = meuRestaurante.serializar();
+        } catch (IOException e) {
+            System.out.println("Erro ao serializar o restaurante: " + e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+        try (FileOutputStream arquivoOutput = new FileOutputStream("restaurante.ser")) {
+            arquivoOutput.write(dadosSerializados);
+            System.out.println("Restaurante serializado salvo com sucesso.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar o restaurante serializado: " + e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+        try (FileInputStream arquivoInput = new FileInputStream("restaurante.ser")) {
+            byte[] dadosDesserializados = arquivoInput.readAllBytes();
+            Restaurante restauranteDesserializado = new Restaurante(); // Criar um restaurante vazio para preencher com os dados desserializados
+            restauranteDesserializado.desserializar(dadosDesserializados);
+            System.out.println("Restaurante desserializado:");
+            restauranteDesserializado.exibirInfo(); // Exibir as informações do restaurante desserializado
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erro ao desserializar o restaurante: " + e.getMessage());
+            e.printStackTrace();
+        }
+
 
         switch (menuPrincipal(scanner)) {
             case "1":
@@ -710,6 +721,9 @@ public class Main {
                             fazerReserva(scanner, cliente);
                             break;
                         case "3":
+                            //Salvar cliente em arquivo
+                            break;
+                        case "4":
                             System.out.println("Obrigado por usar nosso sistema. Até mais!");
                             return;
                         default:
