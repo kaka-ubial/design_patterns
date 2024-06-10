@@ -9,7 +9,6 @@ import java.io.Console;
 
 public class Main {
     private static int lastGarcomId = 1;
-
     public static String menuPrincipal(Scanner scanner) {
         System.out.println("Bem-vindo ao gerenciamento de restaurante!");
         System.out.println("Você é:\n1 - Cliente\n2 - Garçom");
@@ -665,6 +664,9 @@ public class Main {
         Mesa.inicializarMesas();
         Cliente.inicializarClientes();
         Reserva.inicializarReservas(listaReservas);
+        Cliente cliente1 = new Cliente("edu", "22323");
+        Cliente.salvarClienteEmArquivo();
+
 
         // Gerar itens aleatórios
         ArrayList<Item> comidas = GeradorItens.gerarItensAleatorios("comida", 5);
@@ -893,7 +895,9 @@ public class Main {
                         default:
                             System.out.println("Opção inválida.");
                             break;
+
                     }
+
                 }
         }
     }

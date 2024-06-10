@@ -17,13 +17,13 @@ public class Restaurante {
 	private String telefone;
 
 
-	public Restaurante(String nome, String culinaria, String descricao, String endereco, String telefone) {
-		this.nome = nome;
-		this.culinaria = culinaria;
-		this.endereco = endereco;
-		this.descricao = descricao;
-		this.horarioFuncionamento = endereco;
-		this.telefone = telefone;
+	public Restaurante(String nome, String culinaria, String descricao, String endereco, String horarioFuncionamento, String telefone) {
+		this.nome = "Restaurante Feliz";
+		this.culinaria = "Contemporânea";
+		this.endereco = "Avenida Fulano de Tal 1235";
+		this.descricao = "Esse é um ótimo restaurante familiar";
+		this.horarioFuncionamento = "11:30h - 19:30h - Seg - Sáb";
+		this.telefone = "(41) 9999-0000";
 
 	}
 

@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -62,7 +64,7 @@ public class Cliente extends Usuario {
 		}
 	}
 
-	public void salvarClienteEmArquivo() {
+	public static void salvarClienteEmArquivo() {
 		try (FileWriter escritor = new FileWriter("clientes.txt")) {
 			for (Usuario usuario : listaClientes) {
 				if (usuario instanceof Cliente) {
@@ -72,6 +74,25 @@ public class Cliente extends Usuario {
 			}
 		} catch (IOException e) {
 			System.out.println("Ocorreu um erro ao salvar os clientes.");
+			e.printStackTrace();
+		}
+	}
+	public static void carregarClientesDoArquivo() {
+		listaClientes.clear();
+
+		try (BufferedReader leitor = new BufferedReader(new FileReader("clientes.txt"))) {
+			String linha;
+			while ((linha = leitor.readLine()) != null) {
+				if (linha.startsWith("Cliente: ")) {
+					String[] partes = linha.split(", Telefone: ");
+					String nome = partes[0].substring(9); // Remove "Cliente: "
+					String telefone = partes[1];
+					Cliente cliente = new Cliente(nome, telefone);
+					listaClientes.add(cliente);
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao carregar os clientes.");
 			e.printStackTrace();
 		}
 	}

@@ -156,7 +156,7 @@ public class Comanda {
 		System.out.println("A comanda " + idComanda + " foi paga");
 	}
 
-	public void salvarComandasEmArquivo() {
+	public static void salvarComandasEmArquivo() {
 		try (FileWriter escritor = new FileWriter("comandas.txt")) {
 			for (Comanda comanda : listaComandas) {
 				escritor.write("Comanda #" + comanda.getIdComanda() + ", Mesa: " + comanda.getMesa().getNumero() + ", Total: R$" + comanda.getPrecoTotal() + ", Pago: " + comanda.isPago() + "\n");
