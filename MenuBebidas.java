@@ -3,6 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class MenuBebidas extends Menu {
+    private ArrayList<Bebida> bebidas;
     public MenuBebidas(ArrayList<Item> itens, String nome) {
         super(itens, nome);
     }

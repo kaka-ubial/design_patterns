@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
 public class MenuComidas extends Menu {
+    private ArrayList<Prato> pratos;
     public MenuComidas(ArrayList<Item> itens, String nome) {
         super(itens, nome);
     }
