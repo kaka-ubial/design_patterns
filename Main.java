@@ -669,9 +669,9 @@ public class Main {
 
 
         // Gerar itens aleatórios
-        ArrayList<Item> comidas = GeradorItens.gerarItensAleatorios("comida", 5);
-        ArrayList<Item> bebidas = GeradorItens.gerarItensAleatorios("bebida", 5);
-        ArrayList<Item> vinhos = GeradorItens.gerarItensAleatorios("vinho", 5);
+        ArrayList<Item> comidas = GeradorItens.gerarItensAleatorios(Prato.class, 5);
+        ArrayList<Item> bebidas = GeradorItens.gerarItensAleatorios(Bebida.class, 5);
+        ArrayList<Item> vinhos = GeradorItens.gerarItensAleatorios(Vinho.class, 5);
 
         // Criação dos menus
         Menu menuDePratos = new MenuComidas(comidas, "Menu de Pratos");
