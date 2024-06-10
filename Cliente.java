@@ -64,6 +64,13 @@ public class Cliente extends Usuario {
 		}
 	}
 
+	public static void imprimirListaClientes() {
+		System.out.println("Lista de clientes:");
+		for (Cliente cliente : listaClientes) {
+			System.out.println("Nome: " + cliente.getNome() + ", Telefone: " + cliente.getTelefone());
+		}
+	}
+
 	public void salvarClienteEmArquivo() {
 		try (FileWriter escritor = new FileWriter("clientes.txt")) {
 			for (Usuario usuario : listaClientes) {
@@ -77,9 +84,8 @@ public class Cliente extends Usuario {
 			e.printStackTrace();
 		}
 	}
-	public static void carregarClientesDoArquivo() {
-		listaClientes.clear();
 
+	public static void carregarClientesDoArquivo() {
 		try (BufferedReader leitor = new BufferedReader(new FileReader("clientes.txt"))) {
 			String linha;
 			while ((linha = leitor.readLine()) != null) {

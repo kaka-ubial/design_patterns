@@ -29,7 +29,7 @@ public class Main {
 
     public static String menuGarcom(Scanner scanner) {
         System.out.println("MENU");
-        System.out.println("1 - Menus do Restaurante\n2 - Reservas\n3 - Mesas\n4 - Comandas\n5 - Sair");
+        System.out.println("1 - Menus do Restaurante\n2 - Reservas\n3 - Mesas\n4 - Comandas\n5 - Visualizar Clientes\n6 - Sair");
         String opcaoGarcom = scanner.nextLine();
         return opcaoGarcom;
     }
@@ -904,6 +904,10 @@ public class Main {
                             }
                             break;
                         case "5":
+                            Cliente.carregarClientesDoArquivo();
+                            Cliente.imprimirListaClientes();
+                            break;
+                        case "6":
                             System.out.println("Obrigado por usar nosso sistema. Até mais!");
                             return;
                         default:
