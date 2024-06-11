@@ -193,7 +193,7 @@ public class Main {
     public static double obterPrecoItem(Scanner scanner) {
         String precoItemStr;
         while (true) {
-            System.out.println("Digite o preço da nova bebida no formato R$ 00,00:");
+            System.out.println("Digite o preço do novo item no formato R$ 00,00:");
             precoItemStr = scanner.nextLine();
 
             // Verifica se o preço está no formato correto
