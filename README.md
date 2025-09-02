@@ -5,8 +5,8 @@
 
 ## Funcionalidades ⚙️
 - Gestão de Comandas: Garçons podem criar, atualizar e fechar comandas. Clientes podem adicionar itens às comandas existentes.
-- Reserva de Mesas: Garçons podem reservar mesas para clientes, facilitando o gerenciamento de fluxo de clientes.
-- Acesso ao Menu: O sistema oferece acesso fácil ao menu do restaurante, dividido em categorias de comida, bebida e vinhos.
+- model.Reserva de Mesas: Garçons podem reservar mesas para clientes, facilitando o gerenciamento de fluxo de clientes.
+- Acesso ao model.Menu: O sistema oferece acesso fácil ao menu do restaurante, dividido em categorias de comida, bebida e vinhos.
 - Facilidade de Uso: Interface intuitiva e amigável para garantir uma experiência de usuário agradável para clientes e funcionários do restaurante.
 
 ## Requisitos do Sistema 💻

@@ -1,6 +1,0 @@
-Cliente: João, Telefone: 123456789
-Cliente: Maria, Telefone: 987654321
-Cliente: Carlos, Telefone: 555555555
-Cliente: Ana, Telefone: 111222333
-Cliente: Pedro, Telefone: 444555666
-Cliente: karen, Telefone: (49) 99941-6461
