@@ -1,3 +1,8 @@
+import model.Bebida;
+import model.Item;
+import model.Prato;
+import model.Vinho;
+
 import java.util.ArrayList;
 import java.util.Random;
 

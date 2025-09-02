@@ -1,0 +1,6 @@
+model.Cliente: João, Telefone: 123456789
+model.Cliente: Maria, Telefone: 987654321
+model.Cliente: Carlos, Telefone: 555555555
+model.Cliente: Ana, Telefone: 111222333
+model.Cliente: Pedro, Telefone: 444555666
+model.Cliente: karen, Telefone: (49) 99941-6461
